@@ -1,6 +1,6 @@
 import {
   RECEIVE_POSTS,
-} from '../actions/HomeScreen'
+} from '../actions/posts'
 
 const initialState = {
   posts: [],

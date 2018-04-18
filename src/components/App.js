@@ -3,7 +3,7 @@ import HomeScreen from './HomeScreen';
 import PostDetailScreen from './PostDetailScreen';
 import { Route } from 'react-router-dom';
 
-import * as Actions from '../actions/HomeScreen';
+import * as Actions from '../actions/posts';
 
 
 class App extends Component {
