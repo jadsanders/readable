@@ -18,9 +18,6 @@ class App extends Component {
         <Route exact path="/" component={HomeScreen} />
         <Route exact path="/:category" component={HomeScreen} />
         <Route exact path="/:category/:id" component={PostDetailScreen} />
-        <Route exact path="/404" render={() => (
-          <div>Sorry, page not found!</div>
-        )}/>
       </div>
     );
   }
