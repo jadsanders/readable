@@ -4,15 +4,17 @@ import PostDetailScreen from './PostDetailScreen';
 import { Route } from 'react-router-dom';
 
 import * as Actions from '../actions/posts';
-
+import { connect } from 'react-redux';
 
 class App extends Component {
 
-  componentWillMount() {
-    Actions.fetchPosts();
-  }
+componentWillMount() {
+  
+}
+
 
   render() {
+
     return (
       <div>
         <Route exact path="/" component={HomeScreen} />
@@ -23,6 +25,10 @@ class App extends Component {
   }
 }
 
+function mapDispatchToProps (dispatch) {
+  return {
+    fetch: () => dispatch(Actions.fetchPosts())
+  }
+}
 
-
-export default App;
+export default connect(mapDispatchToProps)(App)

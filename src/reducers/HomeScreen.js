@@ -10,6 +10,7 @@ export default function posts (state = initialState, action) {
   switch (action.type) {
     case RECEIVE_POSTS:
 
+      const { posts } = action
       return {
         ...state,
           [posts]: posts
