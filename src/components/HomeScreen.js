@@ -3,11 +3,15 @@ import { connect } from 'react-redux';
 
 class HomeScreen extends Component {
   render() {
+
+    const { postList } = this.props
+
     return (
       <div>
         <h5>This is the HomeScreen (for post listings and filter functionality)!</h5>
         <h1>Current category: {this.props.match.params.category}</h1>
 
+        {postList}
 
       </div>
     );
@@ -16,8 +20,13 @@ class HomeScreen extends Component {
 
 
 function mapStateToProps ({ posts }) {
+
+  const postOrder = posts.allIds
+
   return {
-    posts
+    postList: postOrder.map((id) => ({
+      id
+    }))
   }
 }
 
