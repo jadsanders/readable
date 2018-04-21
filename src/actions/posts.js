@@ -11,5 +11,4 @@ export const fetchPosts = () => dispatch => (
   APIUtil
     .fetchPosts()
     .then(posts => dispatch(receivePosts(posts)))
-    .then(console.log("Action dispatched!"))
 );

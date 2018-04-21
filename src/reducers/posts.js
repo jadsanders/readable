@@ -2,18 +2,20 @@ import {
   RECEIVE_POSTS,
 } from '../actions/posts'
 
-const initialState = {
-  posts: [],
-}
-
-export default function posts (state = initialState, action) {
+export default function posts (state = {}, action) {
   switch (action.type) {
     case RECEIVE_POSTS:
 
       const { posts } = action
+
       return {
         ...state,
-          [posts]: posts
+        byId: posts.reduce((obj, post) => {
+           obj[post.id] = post
+           return obj
+         }, {}),
+
+        allIds: posts.map((post) => post.id)
       }
 
     default:
