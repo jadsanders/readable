@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
+
+import { selectCategory } from '../actions/categories';
 
 class CategorySelect extends Component {
   render() {
+
+    const { categories, selectCategory } = this.props
 
     const style = {
       margin: "5px"
@@ -12,25 +17,44 @@ class CategorySelect extends Component {
       <div>
         <Link
           style={style}
-          onClick={() => this.props.selectCategory(null)}
-          to={"/all"}
-        >all</Link>
+          to="/"
+          key="all"
+          onClick={() => selectCategory([])}
+          >
+
+          all
+
+        </Link>
 
 
 
-        { this.props.categories.map((category) =>
-
+        {categories.map((cat) =>
           <Link
             style={style}
-            key={category.name}
-            onClick={() => this.props.selectCategory(category.name)}
-            to={"/" + category.name}
-          >{category.name}</Link>
+            to={`/${cat.path}`}
+            key={cat.name}
+            onClick={() => selectCategory(cat.name)}>
 
+            {cat.name}
+
+          </Link>
         )}
       </div>
     )
   }
 }
 
-export default CategorySelect;
+function mapStateToProps ({ categories }) {
+  const allCategories = categories.byName
+  return {
+    categories: Object.values(allCategories)
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    selectCategory: (data) => dispatch(selectCategory(data))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategorySelect)

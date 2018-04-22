@@ -3,14 +3,16 @@ import '../stylesheets/HomeScreen.css';
 import PostList from './PostList';
 import CategorySelect from './CategorySelect';
 
-class HomeScreen extends Component {
+class HomeScreen2 extends Component {
   render() {
     return (
       <div>
 
+
+        <h1>IT GOT ROUTES!</h1>
+
         <div className="categorySelect">
           <CategorySelect />
-
         </div>
 
         <div className="postListContainer">
@@ -22,4 +24,4 @@ class HomeScreen extends Component {
   }
 }
 
-export default HomeScreen
+export default HomeScreen2

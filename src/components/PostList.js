@@ -1,32 +1,42 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PostHeader from './PostHeader'
 
 class PostList extends Component {
 
   render() {
-    const style = {
-      box: {
-        marginBottom: "60px",
-        marginTop: "20px",
-        padding: "15px",
-        backgroundColor: "lightgray"
-      },
-      h3: {
-        margin: 0
-      },
-    }
+    const { postList } = this.props
 
-    return(
+    return (
       <div>
-        { this.props.posts.map((post) =>
-          <div key={post.id} style={style.box}>
-            <small>{post.category}</small>
-            <h3 style={style.h3}>{post.title}</h3>
-            <p>{post.body}</p>
+        {postList.map((post) =>
+          <div key={post.id}>
+            <PostHeader post={post}/>
           </div>
         )}
       </div>
-    )
+    );
   }
 }
 
-export default PostList;
+
+function mapStateToProps ({ posts }) {
+
+  const postOrder = posts.allIds
+  const allPosts = posts.byId
+
+  return {
+    postList: postOrder.map((id) => (
+
+      Object.keys(allPosts[id]).reduce((posts, post) => {
+        posts[post] = allPosts[id][post]
+          ? allPosts[id][post]
+          : null
+
+        return posts
+      }, {})
+    ))
+  }
+}
+
+export default connect(mapStateToProps)(PostList)

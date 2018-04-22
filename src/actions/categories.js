@@ -1,6 +1,7 @@
 import * as APIUtil from '../utils/api';
 
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
+export const SELECT_CATEGORY = 'SELECT_CATEGORY';
 
 export const receiveCategories = categories => ({
   type: RECEIVE_CATEGORIES,
@@ -12,3 +13,11 @@ export const fetchCategories = () => dispatch => (
     .fetchCategories()
     .then(categories => dispatch(receiveCategories(categories)))
 );
+
+
+export function selectCategory(category) {
+  return {
+    type: SELECT_CATEGORY,
+    category
+  }
+};

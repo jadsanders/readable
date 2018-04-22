@@ -1,0 +1,13 @@
+.postHeader {
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #fafafa;
+}
+
+.postHeader h3 {
+  margin: 0px
+}
+
+.postHeader h6 {
+  margin: 10px 0px 10px 0px
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import HomeScreen from './HomeScreen';
+import HomeScreen2 from './HomeScreen2';
 import PostDetailScreen from './PostDetailScreen';
 import { Route } from 'react-router-dom';
 
@@ -12,14 +13,14 @@ class App extends Component {
 
   componentWillMount() {
     this.props.fetchPosts()
-    //this.props.fetchCategories()
+    this.props.fetchCategories()
   }
 
   render() {
     return (
       <div>
         <Route exact path="/" component={HomeScreen} />
-        <Route exact path="/:category" component={HomeScreen} />
+        <Route exact path="/:category" component={HomeScreen2} />
         <Route exact path="/:category/:id" component={PostDetailScreen} />
       </div>
     );
@@ -35,4 +36,4 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(App)
+export default connect(null,mapDispatchToProps)(App)
