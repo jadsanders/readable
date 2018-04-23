@@ -1,11 +1,9 @@
 import {
-  RECEIVE_CATEGORIES,
-  SELECT_CATEGORY,
+  RECEIVE_CATEGORIES
 } from '../actions/categories'
 
 const initialState = {
-  byName: [],
-  selectedCategory: []
+  byName: []
 }
 
 export default function categories (state = initialState, action) {
@@ -19,17 +17,10 @@ export default function categories (state = initialState, action) {
           byName: categories.categories.reduce((name, category) => {
              name[category.name] = category
              return name
-           }, {})
+          }, {})
       }
 
-    case SELECT_CATEGORY:
 
-      const { category } = action
-
-      return {
-        ...state,
-          selectedCategory: category
-      }
 
 
     default:

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import HomeScreen from './HomeScreen';
-import HomeScreen2 from './HomeScreen2';
 import PostDetailScreen from './PostDetailScreen';
+
 import { Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import { fetchPosts } from '../actions/posts';
 import { fetchCategories } from '../actions/categories';
@@ -18,11 +19,13 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Route exact path="/" component={HomeScreen} />
-        <Route exact path="/:category" component={HomeScreen2} />
-        <Route exact path="/:category/:id" component={PostDetailScreen} />
-      </div>
+      <BrowserRouter>
+        <div>
+          <Route exact path="/" component={HomeScreen} />
+          <Route exact path="/:category" component={HomeScreen} />
+          <Route exact path="/:category/:id" component={PostDetailScreen} />
+        </div>
+      </BrowserRouter>
     );
   }
 }

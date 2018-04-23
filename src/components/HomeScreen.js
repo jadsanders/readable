@@ -5,18 +5,15 @@ import CategorySelect from './CategorySelect';
 
 class HomeScreen extends Component {
   render() {
+
     return (
       <div>
-
         <div className="categorySelect">
           <CategorySelect />
-
         </div>
-
         <div className="postListContainer">
-          <PostList />
+          <PostList path={this.props.match.params.category}/>
         </div>
-
       </div>
     )
   }

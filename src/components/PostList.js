@@ -20,10 +20,15 @@ class PostList extends Component {
 }
 
 
-function mapStateToProps ({ posts }) {
+
+
+function mapStateToProps ({posts}, ownProps) {
 
   const postOrder = posts.allIds
   const allPosts = posts.byId
+
+  const currentPath = ownProps.path
+
 
   return {
     postList: postOrder.map((id) => (
@@ -35,7 +40,13 @@ function mapStateToProps ({ posts }) {
 
         return posts
       }, {})
-    ))
+    )).filter((post) => {
+      if(currentPath === undefined) {
+        return post
+      } else {
+        return post.category === currentPath
+      }
+    })
   }
 }
 

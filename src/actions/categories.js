@@ -13,11 +13,3 @@ export const fetchCategories = () => dispatch => (
     .fetchCategories()
     .then(categories => dispatch(receiveCategories(categories)))
 );
-
-
-export function selectCategory(category) {
-  return {
-    type: SELECT_CATEGORY,
-    category
-  }
-};
