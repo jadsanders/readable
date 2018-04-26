@@ -1,0 +1,24 @@
+.home-button-container {
+  width: 15%;
+  float: left;
+}
+
+.post-detail-container {
+  background-color: grey;
+  width: calc(70% - 50px);
+  padding: 50px 25px 50px 25px;
+  transition: all 0.3s;
+  float: left;
+}
+
+@media only screen and (max-width: 800px) {
+  .post-detail-container {
+    width: calc(100% - 50px);
+    margin: 0;
+  }
+}
+
+.comment-box {
+  margin-bottom: 25px;
+  background-color: lightgray;
+}

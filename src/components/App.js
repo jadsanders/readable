@@ -8,6 +8,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { fetchPosts } from '../actions/posts';
 import { fetchCategories } from '../actions/categories';
 
+import '../stylesheets/App.css';
+import '../stylesheets/Headlines.css';
+import '../stylesheets/HomeScreen.css';
+import '../stylesheets/PostDetailScreen.css';
+
 import { connect } from 'react-redux';
 
 class App extends Component {
@@ -21,6 +26,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
+          <div className="navbar"></div>
           <Route exact path="/" component={HomeScreen} />
           <Route exact path="/:category" component={HomeScreen} />
           <Route exact path="/:category/:id" component={PostDetailScreen} />

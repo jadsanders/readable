@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
-import '../stylesheets/HomeScreen.css';
 import PostList from './PostList';
+import LargeButton from './LargeButton';
 import CategorySelect from './CategorySelect';
 
 class HomeScreen extends Component {
-  render() {
 
+
+  render() {
     return (
       <div>
-        <div className="categorySelect">
-          <CategorySelect />
+        <div className="categoryselect-container">
+          <CategorySelect path={this.props.match.params.category} />
+          <div className="button-container">
+            <LargeButton />
+          </div>
         </div>
-        <div className="postListContainer">
+        <div className="postlist-container">
           <PostList path={this.props.match.params.category}/>
         </div>
+
       </div>
     )
   }

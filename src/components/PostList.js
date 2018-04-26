@@ -1,26 +1,60 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PostHeader from './PostHeader'
+import PostHeader from './PostHeader';
+import ListSort from './ListSort';
+import NothingFound from './NothingFound';
+
 
 class PostList extends Component {
+  leftbox = {
+    width: 'calc(20% - 30px)',
+    height: '20px',
+    display: 'inline-block',
+    textAlign: 'left',
+    padding: '15px',
+    verticalAlign: 'top'
+  }
+  rightbox = {
+    width: 'calc(80% - 30px)',
+    height: '14px',
+    display: 'inline-block',
+    textAlign: 'right',
+    padding: '15px',
+    paddingTop: '21px',
+  }
+
 
   render() {
-    const { postList } = this.props
+    const { postList, path } = this.props
+    const listsort = postList.length > 1 ? (<ListSort />) : (null);
 
     return (
       <div>
-        {postList.map((post) =>
-          <div key={post.id}>
-            <PostHeader post={post}/>
-          </div>
-        )}
+        <div className='component-header-box'>
+          <div style={this.leftbox}><h3>Posts</h3></div>
+          <div style={this.rightbox}><h5>{listsort}</h5></div>
+        </div>
+        <div className="postlist-box">
+          {postList.length > 0
+            ? postList.map((post) =>
+                <div key={post.id}>
+                  <PostHeader post={post}/>
+                </div>
+              )
+            : null
+          }
+
+          {postList.length === 0 && path !== undefined
+            ? <NothingFound />
+            : null
+          }
+
+
+        </div>
       </div>
     );
   }
 }
-
-
-
 
 function mapStateToProps ({posts}, ownProps) {
 
@@ -28,7 +62,6 @@ function mapStateToProps ({posts}, ownProps) {
   const allPosts = posts.byId
 
   const currentPath = ownProps.path
-
 
   return {
     postList: postOrder.map((id) => (
@@ -40,6 +73,8 @@ function mapStateToProps ({posts}, ownProps) {
 
         return posts
       }, {})
+
+    //Filter posts according to the selected category
     )).filter((post) => {
       if(currentPath === undefined) {
         return post
