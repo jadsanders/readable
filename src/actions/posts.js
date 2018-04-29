@@ -4,9 +4,9 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const SORT_POSTS_DATE = 'SORT_POSTS_DATE';
 export const SORT_POSTS_VOTE = 'SORT_POSTS_VOTE';
 export const SORT_POSTS_COMMENTS = 'SORT_POSTS_COMMENTS';
-export const CLEAR_SORT = 'CLEAR_SORT';
-export const POST_UP_VOTE = 'POST_UP_VOTE';
-export const POST_DOWN_VOTE = 'POST_DOWN_VOTE';
+export const POST_UPDATE_VOTE = 'POST_UP_VOTE';
+export const CREATE_POST = 'CREATE_POST';
+export const DELETE_POST = 'DELETE_POST';
 
 export const receivePosts = posts => ({
   type: RECEIVE_POSTS,
@@ -37,22 +37,46 @@ export function sortPostsComments () {
   }
 };
 
-export function clearSort () {
+export function postUpdateVote (id, direction) {
   return {
-    type: CLEAR_SORT
+    type: POST_UPDATE_VOTE,
+    id,
+    direction
   }
 };
 
-export function postUpVote (id) {
-  return {
-    type: POST_UP_VOTE,
-    id
-  }
-}
+//here needs to go some logic in 'then(dispatch)' for entity --> dispatch commentUpdateVote
 
-export function postDownVote (id) {
+export const updateVote = (id, direction, entity) => dispatch => (
+  APIUtil
+    .updateVote(id, direction, entity)
+    .then(dispatch(postUpdateVote(id, direction)))
+);
+
+
+export function createPost (post) {
   return {
-    type: POST_DOWN_VOTE,
+    type: CREATE_POST,
+    post
+  }
+};
+
+export const addPost = (post) => dispatch => (
+  APIUtil
+    .createPost(post)
+    .then(dispatch(createPost(post)))
+);
+
+
+export function deletePost (id) {
+  return {
+    type: DELETE_POST,
     id
   }
-}
+};
+
+export const removePost = (id) => dispatch => (
+  APIUtil
+    .deletePost(id)
+    .then(dispatch(deletePost(id)))
+);

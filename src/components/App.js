@@ -12,6 +12,7 @@ import '../stylesheets/App.css';
 import '../stylesheets/Headlines.css';
 import '../stylesheets/HomeScreen.css';
 import '../stylesheets/PostDetailScreen.css';
+import '../stylesheets/Modal.css';
 
 import { connect } from 'react-redux';
 
@@ -35,8 +36,6 @@ class App extends Component {
     );
   }
 }
-
-
 
 function mapDispatchToProps (dispatch) {
   return {

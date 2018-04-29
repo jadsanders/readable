@@ -3,9 +3,9 @@ import {
   SORT_POSTS_DATE,
   SORT_POSTS_VOTE,
   SORT_POSTS_COMMENTS,
-  CLEAR_SORT,
-  POST_UP_VOTE,
-  POST_DOWN_VOTE
+  POST_UPDATE_VOTE,
+  CREATE_POST,
+  DELETE_POST,
 } from '../actions/posts'
 
 const initialState = {
@@ -16,10 +16,9 @@ const initialState = {
 
 export default function posts (state = initialState, action) {
 
-  const { posts, id } = action
+  const { posts, id, direction, post } = action
 
   switch (action.type) {
-
     case RECEIVE_POSTS:
       return {
         ...state,
@@ -31,7 +30,6 @@ export default function posts (state = initialState, action) {
         allIds: posts.sort((a, b) => a.timestamp < b.timestamp).map((post) => post.id)
       }
 
-
     case SORT_POSTS_DATE:
       return {
         ...state,
@@ -40,7 +38,6 @@ export default function posts (state = initialState, action) {
         allIds: Object.values(state.byId).sort((a, b) => a.timestamp < b.timestamp).map((post) => post.id),
         sortType: 'timestamp'
       }
-
 
     case SORT_POSTS_VOTE:
       return {
@@ -60,37 +57,41 @@ export default function posts (state = initialState, action) {
         sortType: 'comments'
       }
 
-
-    case CLEAR_SORT:
-      return {
-        ...state,
-        sortType: 'timestamp',
-        allIds: Object.values(state.byId).sort((a, b) => a.timestamp < b.timestamp).map((post) => post.id)
-      }
-
-    case POST_UP_VOTE:
+    case POST_UPDATE_VOTE:
       return {
         ...state,
         byId: {
           ...state.byId,
           [id]: {
             ...state.byId[id],
-            voteScore: state.byId[id].voteScore + 1
+            voteScore: direction === 'upVote' ? state.byId[id].voteScore + 1 : state.byId[id].voteScore - 1
           }
         }
       }
 
-    case POST_DOWN_VOTE:
+    case CREATE_POST:
+      return {
+        ...state,
+        byId: {
+          ...state.byId,
+          [post.id]: post
+        },
+        allIds: [...state.allIds, post.id]
+      }
+
+    case DELETE_POST:
       return {
         ...state,
         byId: {
           ...state.byId,
           [id]: {
             ...state.byId[id],
-            voteScore: state.byId[id].voteScore - 1
+            deleted: true
           }
-        }
+        },
+        allIds: [...state.allIds.filter(item => item !== id)]
       }
+
 
     default:
       return state

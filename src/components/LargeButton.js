@@ -1,7 +1,7 @@
 import React from 'react';
 
-const LargeButton = () => (
-  <div className="large-button">
+const LargeButton = (props) => (
+  <div className="large-button" onClick={props.openModal}>
     New Post
   </div>
 )

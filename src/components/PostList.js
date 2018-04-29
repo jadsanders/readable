@@ -5,6 +5,7 @@ import ListSort from './ListSort';
 import NothingFound from './NothingFound';
 
 
+
 class PostList extends Component {
   leftbox = {
     width: 'calc(20% - 30px)',
@@ -22,7 +23,6 @@ class PostList extends Component {
     padding: '15px',
     paddingTop: '21px',
   }
-
 
   render() {
     const { postList, path } = this.props

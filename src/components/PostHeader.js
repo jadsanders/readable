@@ -3,13 +3,13 @@ import '../stylesheets/PostHeader.css';
 import * as Utils from '../utils/helpers';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { clearSort, postUpVote, postDownVote } from '../actions/posts';
+import { updateVote, sortPostsDate, removePost } from '../actions/posts';
 
 class PostHeader extends Component {
   render() {
 
     const { title, commentCount, author, voteScore, timestamp, category, id } = this.props.post
-    const { clearSort, upVote, downVote } = this.props
+    const { clearSort, upVote, downVote, removePost } = this.props
 
     return (
       <div>
@@ -26,9 +26,10 @@ class PostHeader extends Component {
           <h5>Comments: {commentCount} || Votes: {voteScore}</h5>
           <h6>Written by {author} at {Utils.timeConvert(timestamp)}</h6>
 
-          <i className="large material-icons vote-thumb" onClick={() => downVote(id)}>thumb_down</i>
-          <i className="large material-icons vote-thumb" onClick={() => upVote(id)}>thumb_up</i>
+          <i className="large material-icons vote-thumb" onClick={() => downVote(id, 'downVote', 'posts')}>thumb_down</i>
+          <i className="large material-icons vote-thumb" onClick={() => upVote(id, 'upVote', 'posts')}>thumb_up</i>
 
+          <button onClick={() => removePost(id)}>Delete</button>
         </div>
 
       </div>
@@ -38,9 +39,10 @@ class PostHeader extends Component {
 
 function mapDispatchToProps (dispatch) {
   return {
-    clearSort: () => dispatch(clearSort()),
-    upVote: (id) => dispatch(postUpVote(id)),
-    downVote: (id) => dispatch(postDownVote(id)),
+    clearSort: () => dispatch(sortPostsDate()),
+    upVote: (id, direction, entity) => dispatch(updateVote(id, direction, entity)),
+    downVote: (id, direction, entity) => dispatch(updateVote(id, direction, entity)),
+    removePost: (id) => dispatch(removePost(id))
   }
 }
 

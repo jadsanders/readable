@@ -1,17 +1,55 @@
-const api = "http://localhost:3001/"
-const authorizationHeader = "reactisawesome";
+const api = "http://localhost:3001"
+
+const headers = {
+  'Accept': 'application/json',
+  'Authorization': 'reactisawesome'
+}
 
 export const fetchPosts = () =>
-  fetch(api+"posts",{headers: { 'Authorization': authorizationHeader }})
+  fetch(`${api}/posts`, { headers })
   .then(res => res.json())
-  //.then(console.log("Posts fetched!"))
 
 export const fetchCategories = () =>
-  fetch(api+"categories",{headers: { 'Authorization': authorizationHeader }})
+  fetch(`${api}/categories`, { headers })
   .then(res => res.json())
-  //.then(console.log("Categories fetched!"))
 
 export const fetchComments = (id) =>
-  fetch(api+"posts/"+id+"/comments",{headers: { 'Authorization': authorizationHeader }})
+  fetch(`${api}/posts/${id}/comments`, { headers })
   .then(res => res.json())
-  //.then(console.log("Comments fetched!"))
+
+export const updateVote = (id, direction, entity) =>
+  fetch(`${api}/${entity}/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      option: direction
+    }),
+  }).then(res => res.json())
+
+  export const createPost = (post) =>
+    fetch(`${api}/posts`, {
+      method: 'POST',
+      headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: post.id,
+        timestamp: post.timestamp,
+        title: post.title,
+        body: post.body,
+        author: post.author,
+        category: post.category
+      }),
+    }).then(res => res.json())
+
+  export const deletePost = (id) =>
+    fetch(`${api}/posts/${id}`, {
+      method: 'DELETE',
+      headers: {
+        ...headers
+      },
+    }).then(res => res.json())
