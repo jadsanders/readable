@@ -35,7 +35,7 @@ export default function posts (state = initialState, action) {
         ...state,
 
         //Sorts newest -> oldest
-        allIds: Object.values(state.byId).sort((a, b) => a.timestamp < b.timestamp).map((post) => post.id),
+        allIds: Object.values(state.byId).filter((post) => post.deleted === false).sort((a, b) => a.timestamp < b.timestamp).map((post) => post.id),
         sortType: 'timestamp'
       }
 
@@ -44,7 +44,7 @@ export default function posts (state = initialState, action) {
         ...state,
 
         //Sorts highest -> lowest
-        allIds: Object.values(state.byId).sort((a, b) => a.voteScore < b.voteScore).map((post) => post.id),
+        allIds: Object.values(state.byId).filter((post) => post.deleted === false).sort((a, b) => a.voteScore < b.voteScore).map((post) => post.id),
         sortType: 'voteScore'
       }
 
@@ -53,7 +53,7 @@ export default function posts (state = initialState, action) {
         ...state,
 
         //Sorts highest -> lowest
-        allIds: Object.values(state.byId).sort((a, b) => a.commentCount < b.commentCount).map((post) => post.id),
+        allIds: Object.values(state.byId).filter((post) => post.deleted === false).sort((a, b) => a.commentCount < b.commentCount).map((post) => post.id),
         sortType: 'comments'
       }
 
@@ -89,7 +89,8 @@ export default function posts (state = initialState, action) {
             deleted: true
           }
         },
-        allIds: [...state.allIds.filter(item => item !== id)]
+
+        allIds: state.allIds.filter(item => item !== id)
       }
 
 

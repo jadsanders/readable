@@ -30,6 +30,7 @@ class PostHeader extends Component {
           <i className="large material-icons vote-thumb" onClick={() => upVote(id, 'upVote', 'posts')}>thumb_up</i>
 
           <button onClick={() => removePost(id)}>Delete</button>
+          <button>Edit</button>
         </div>
 
       </div>

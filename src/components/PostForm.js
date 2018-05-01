@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import uuidv4 from 'uuid';
 
 
-class PostForm extends Component {
+class NewPostForm extends Component {
 
   state = {
     id: uuidv4(),
@@ -17,7 +17,6 @@ class PostForm extends Component {
     deleted: false,
     commentCount: 0
   }
-
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -76,10 +75,7 @@ class PostForm extends Component {
           value={this.state.author}
         />
 
-
-
         <fieldset>
-
           {this.props.categories.map((category) =>
             <div key={category.name}>
             <input
@@ -92,10 +88,7 @@ class PostForm extends Component {
             <label htmlFor={category.name}>{category.name}</label>
             </div>
           )}
-
         </fieldset>
-
-
 
         <button
           onClick={this.handleSubmit}
@@ -123,4 +116,4 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(PostForm)
+export default connect(mapStateToProps,mapDispatchToProps)(NewPostForm)

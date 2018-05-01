@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as APIUtil from '../utils/api';
+import NothingFound from './NothingFound';
 
 class PostDetailScreen extends Component {
 
@@ -9,7 +10,7 @@ class PostDetailScreen extends Component {
     comments: []
   }
 
-  componentDidMount() {
+  componentWillMount() {
     APIUtil.fetchComments(this.props.match.params.id).then((comments) => {
       this.setState({
         comments
@@ -43,7 +44,7 @@ class PostDetailScreen extends Component {
               </div>
             </div>
 
-            : null
+            : <NothingFound />
           }
         </div>
 

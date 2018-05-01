@@ -38,7 +38,7 @@ class PostList extends Component {
           {postList.length > 0
             ? postList.map((post) =>
                 <div key={post.id}>
-                  <PostHeader post={post}/>
+                  <PostHeader post={post} openEditPostModal={this.props.openEditPostModal}/>
                 </div>
               )
             : null
