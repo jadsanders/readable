@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import '../stylesheets/PostHeader.css';
-import * as Utils from '../utils/helpers';
+import './PostHeader.css';
+import * as Utils from '../../utils/helpers';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateVote, sortPostsDate, removePost } from '../actions/posts';
+import { updateVote, sortPostsDate, removePost } from '../../actions/posts';
 
 class PostHeader extends Component {
   render() {
@@ -30,7 +30,11 @@ class PostHeader extends Component {
           <i className="large material-icons vote-thumb" onClick={() => upVote(id, 'upVote', 'posts')}>thumb_up</i>
 
           <button onClick={() => removePost(id)}>Delete</button>
-          <button>Edit</button>
+          <Link
+            to={`/posts/${id}/edit`}
+          >
+            Edit
+          </Link>
         </div>
 
       </div>

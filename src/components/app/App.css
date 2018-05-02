@@ -1,7 +1,7 @@
 .navbar {
   height: 80px;
   background-color: #1e2332;
-  background-image: url('../images/rocket-flying.png');
+  background-image: url('../../images/rocket-flying.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 40px;

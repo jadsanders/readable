@@ -1,0 +1,12 @@
+.nothing-found {
+  text-align: center
+}
+
+.nothing-image {
+  height: 300px;
+  width: 100%;
+  background-image: url('../../../images/sad_cloud.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 200px;
+}

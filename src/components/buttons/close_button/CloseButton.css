@@ -1,0 +1,15 @@
+.close-button {
+  text-decoration: none;
+  font-size: 14px;
+  color: #ed6a5a;
+  width: 30px;
+  height: 27px;
+  padding: 3px 0px 0px 0px;
+  border-radius: 100%;
+  transition: 0.3s;
+  margin: 0 auto
+}
+
+.close-button:hover {
+  background-color: #fbe3e1
+}

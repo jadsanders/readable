@@ -1,31 +1,20 @@
 import React, { Component } from 'react';
-import { addPost, sortPostsDate } from '../actions/posts';
+import { addPost, sortPostsDate } from '../../../actions/posts';
 import { connect } from 'react-redux';
-import uuidv4 from 'uuid';
 
 
-class NewPostForm extends Component {
+class PostForm extends Component {
 
-  state = {
-    id: uuidv4(),
-    timestamp: new Date().getTime(),
-    title: [],
-    body: [],
-    author: [],
-    category: [],
-    voteScore: 1,
-    deleted: false,
-    commentCount: 0
-  }
+  state = this.props.state
 
   handleSubmit = (e) => {
     e.preventDefault()
     if (!this.canBeSubmitted()) {
       return
     } else {
-      this.props.closeModal()
       this.props.createPost(this.state)
       this.props.sortPostsDate()
+      this.props.history.push('/')
     }
   }
 
@@ -116,4 +105,4 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(NewPostForm)
+export default connect(mapStateToProps,mapDispatchToProps)(PostForm)

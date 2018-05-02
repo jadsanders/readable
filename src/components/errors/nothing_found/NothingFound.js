@@ -1,4 +1,5 @@
 import React from 'react';
+import './NothingFound.css';
 
 const NothingFound = () => (
   <div className="nothing-found">

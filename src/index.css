@@ -4,3 +4,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   background-color: #f9fcfa
 }
+
+a {
+  text-decoration: none
+}

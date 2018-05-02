@@ -1,0 +1,18 @@
+.left-postlist-header-box {
+  width: calc(20% - 30px);
+  height: 20px;
+  display: inline-block;
+  text-align: left;
+  padding: 15px;
+  vertical-align: top;
+  margin-top: -15px
+}
+.right-postlist-header-box {
+  width: calc(80% - 30px);
+  height: 14px;
+  display: inline-block;
+  text-align: right;
+  padding: 15px;
+  padding-top: 21px;
+  margin-top: -15px
+}

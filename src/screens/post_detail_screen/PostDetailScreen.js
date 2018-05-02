@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as APIUtil from '../utils/api';
-import NothingFound from './NothingFound';
+import * as APIUtil from '../../utils/api';
+import NothingFound from '../../components/errors/nothing_found/NothingFound';
+
+import './PostDetailScreen.css';
 
 class PostDetailScreen extends Component {
 
