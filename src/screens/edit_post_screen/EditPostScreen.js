@@ -4,20 +4,10 @@ import PostForm from '../../components/forms/post_form/PostForm';
 
 class EditPostScreen extends Component {
 
-  state = {
-    id: this.props.currentPost.id,
-    timestamp: this.props.currentPost.timestamp,
-    title: this.props.currentPost.title,
-    body: this.props.currentPost.body,
-    author: this.props.currentPost.author,
-    category: this.props.currentPost.category,
-    voteScore: this.props.currentPost.voteScore,
-    deleted: this.props.currentPost.deleted,
-    commentCount: this.props.currentPost.commentCount,
-  }
+  state = this.props.currentPost
 
   render() {
-    console.log(this.props.currentPost)
+    console.log(this.state)
     return(
       <div>
         <PostForm
