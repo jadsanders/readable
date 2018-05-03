@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import * as APIUtil from '../../utils/api';
 import NothingFound from '../../components/errors/nothing_found/NothingFound';
 
@@ -9,19 +8,25 @@ import './PostDetailScreen.css';
 class PostDetailScreen extends Component {
 
   state = {
+    currentPost: {},
     comments: []
   }
 
-  componentWillMount() {
-    APIUtil.fetchComments(this.props.match.params.id).then((comments) => {
-      this.setState({
-        comments
-      })
-    })
+  componentDidMount() {
+
+    //here i need to fetch both, currentpost and comments for that post
+
+    APIUtil
+    .fetchPostDetails(this.props.match.params.id)
+    .then((currentPost) => this.setState({currentPost}))
+
+
   }
 
   render() {
-    const { currentPost } = this.props
+    const { currentPost } = this.state
+
+    console.log(this.state)
 
     return (
       <div>
@@ -55,10 +60,4 @@ class PostDetailScreen extends Component {
   }
 }
 
-function mapStateToProps({posts}, ownProps) {
-  return {
-    currentPost: posts.byId[ownProps.match.params.id]
-  }
-}
-
-export default connect(mapStateToProps)(PostDetailScreen)
+export default PostDetailScreen;

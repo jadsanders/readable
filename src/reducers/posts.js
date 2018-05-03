@@ -11,7 +11,7 @@ import {
 const initialState = {
   byId: {},
   allIds: [],
-  sortType: 'timestamp'
+  sortType: 'timestamp',
 }
 
 export default function posts (state = initialState, action) {

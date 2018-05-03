@@ -1,6 +1,8 @@
 import * as APIUtil from '../utils/api';
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const RECEIVE_POST_DETAILS = 'RECEIVE_POST_DETAILS';
+export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const SORT_POSTS_DATE = 'SORT_POSTS_DATE';
 export const SORT_POSTS_VOTE = 'SORT_POSTS_VOTE';
 export const SORT_POSTS_COMMENTS = 'SORT_POSTS_COMMENTS';

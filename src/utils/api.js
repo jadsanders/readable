@@ -9,12 +9,16 @@ export const fetchPosts = () =>
   fetch(`${api}/posts`, { headers })
   .then(res => res.json())
 
-export const fetchCategories = () =>
-  fetch(`${api}/categories`, { headers })
+export const fetchPostDetails = (id) =>
+  fetch(`${api}/posts/${id}`, { headers })
   .then(res => res.json())
 
 export const fetchComments = (id) =>
   fetch(`${api}/posts/${id}/comments`, { headers })
+  .then(res => res.json())
+
+export const fetchCategories = () =>
+  fetch(`${api}/categories`, { headers })
   .then(res => res.json())
 
 export const updateVote = (id, direction, entity) =>

@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import * as APIUtil from '../../utils/api';
 import PostForm from '../../components/forms/post_form/PostForm';
 
 class EditPostScreen extends Component {
 
-  state = this.props.currentPost
+  state = {
+    currentPost: {}
+  }
+
+  componentDidMount() {
+    APIUtil
+    .fetchPostDetails(this.props.match.params.id)
+    .then((currentPost) => this.setState({currentPost}))
+  }
 
   render() {
-    console.log(this.state)
+
+    console.log(this.state.currentPost)
     return(
       <div>
         <PostForm
           history={this.props.history}
-          state={this.state}
+          state={this.state.currentPost}
+          type="edit"
         />
       </div>
     )
   }
 }
 
-function mapStateToProps ({ posts }, ownProps) {
-  return {
-    currentPost: posts.byId[ownProps.match.params.id]
-  }
-}
-
-export default connect(mapStateToProps,null)(EditPostScreen)
+export default EditPostScreen;

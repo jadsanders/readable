@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import PostsList from '../../components/posts_list/PostsList';
 import LargeButton from '../../components/buttons/large_button/LargeButton';
 import PostsCategoryFilter from '../../components/posts_category_filter/PostsCategoryFilter';
-import { Link } from 'react-router-dom';
 
 import './HomeScreen.css';
 
+import { fetchPosts } from '../../actions/posts';
+import { fetchCategories } from '../../actions/categories';
+
 class HomeScreen extends Component {
+
+  componentDidMount() {
+    this.props.fetchPosts()
+    this.props.fetchCategories()
+  }
+
   render() {
     return (
       <div>
@@ -35,4 +46,11 @@ class HomeScreen extends Component {
   }
 }
 
-export default HomeScreen
+function mapDispatchToProps (dispatch) {
+  return {
+    fetchPosts: () => dispatch(fetchPosts()),
+    fetchCategories: () => dispatch(fetchCategories())
+  }
+}
+
+export default connect(null,mapDispatchToProps)(HomeScreen)
