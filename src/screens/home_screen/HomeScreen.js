@@ -8,14 +8,16 @@ import PostsCategoryFilter from '../../components/posts_category_filter/PostsCat
 
 import './HomeScreen.css';
 
-import { fetchPosts } from '../../actions/posts';
+import { fetchPosts, clearPostDetails, clearComments } from '../../actions/posts';
 import { fetchCategories } from '../../actions/categories';
 
 class HomeScreen extends Component {
 
   componentDidMount() {
-    this.props.fetchPosts()
-    this.props.fetchCategories()
+    this.props.fetchPosts();
+    this.props.fetchCategories();
+    this.props.clearPostDetails();
+    this.props.clearComments();
   }
 
   render() {
@@ -49,7 +51,9 @@ class HomeScreen extends Component {
 function mapDispatchToProps (dispatch) {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
-    fetchCategories: () => dispatch(fetchCategories())
+    fetchCategories: () => dispatch(fetchCategories()),
+    clearPostDetails: () => dispatch(clearPostDetails()),
+    clearComments: () => dispatch(clearComments())
   }
 }
 

@@ -9,8 +9,6 @@ import './PostsList.css';
 class PostList extends Component {
   render() {
 
-    console.log(this.props.postList)
-
     const { postList, path } = this.props
     const listsort = postList.length > 1 ? (<PostsListSort />) : (null);
 

@@ -1,58 +1,40 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import * as APIUtil from '../../utils/api';
 import NothingFound from '../../components/errors/nothing_found/NothingFound';
 
 import './PostDetailScreen.css';
 
+import { fetchPostDetails, fetchComments } from '../../actions/posts';
+
 class PostDetailScreen extends Component {
 
-  state = {
-    currentPost: {},
-    comments: []
-  }
-
   componentDidMount() {
-
-    //here i need to fetch both, currentpost and comments for that post
-
-    APIUtil
-    .fetchPostDetails(this.props.match.params.id)
-    .then((currentPost) => this.setState({currentPost}))
-
-
+    this.props.fetchComments(this.props.match.params.id);
+    this.props.fetchPostDetails(this.props.match.params.id);
   }
+
+  // make component home button out of link to='/'
 
   render() {
-    const { currentPost } = this.state
-
-    console.log(this.state)
-
     return (
       <div>
 
-        <div className='home-button-container'>
-          <Link to='/'>Home</Link>
-        </div>
+        <Link to='/'>
+          <div className='home-button'>
+            <i className="material-icons home-icon">home</i>Home
+          </div>
+        </Link>
 
         <div className='post-detail-container'>
-          {currentPost !== undefined
-            ? <div>
-                <div className='post-detail-box'>
-                  <h2>{currentPost.title}</h2>
-                </div>
 
-                <div className='post-comments-box'>
-                  {this.state.comments.map((comment) =>
-                    <div className='comment-box' key={comment.id}>
-                      {comment.body}
-                    </div>
-                  )}
-                </div>
-              </div>
+          {this.props.postDetails.hasOwnProperty("error") === true
+            ? <NothingFound />
 
-            : <NothingFound />
+            // put a component here for post details
+            : <div>{this.props.postDetails.title}</div>
           }
+
         </div>
 
       </div>
@@ -60,4 +42,18 @@ class PostDetailScreen extends Component {
   }
 }
 
-export default PostDetailScreen;
+function mapStateToProps (state) {
+  return {
+    postDetails: state.posts.postDetails,
+    postComments: state.posts.postComments
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    fetchPostDetails: (id) => dispatch(fetchPostDetails(id)),
+    fetchComments: (id) => dispatch(fetchComments(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetailScreen)

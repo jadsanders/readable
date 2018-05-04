@@ -16,13 +16,15 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <div className="navbar"></div>
-          <Switch>
-            <Route exact path="/" component={HomeScreen} />
-            <Route exact path="/posts/new" component={CreatePostScreen} />
-            <Route exact path="/posts/:id/edit" component={EditPostScreen} />
-            <Route exact path="/:category" component={HomeScreen} />
-            <Route exact path="/:category/:id" component={PostDetailScreen} />
-          </Switch>
+          <div className="content-container">
+            <Switch>
+              <Route exact path="/" component={HomeScreen} />
+              <Route exact path="/posts/new" component={CreatePostScreen} />
+              <Route exact path="/posts/:id/edit" component={EditPostScreen} />
+              <Route exact path="/:category" component={HomeScreen} />
+              <Route exact path="/:category/:id" component={PostDetailScreen} />
+            </Switch>
+          </div>
         </div>
       </BrowserRouter>
     );

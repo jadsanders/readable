@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addPost, sortPostsDate } from '../../../actions/posts';
+import { addPost, editPost, sortPostsDate } from '../../../actions/posts';
 import { connect } from 'react-redux';
 
 
@@ -7,12 +7,23 @@ class PostForm extends Component {
 
   state = this.props.state
 
-  handleSubmit = (e) => {
+  handleCreate = (e) => {
     e.preventDefault()
     if (!this.canBeSubmitted()) {
       return
     } else {
       this.props.createPost(this.state)
+      this.props.sortPostsDate()
+      this.props.history.push('/')
+    }
+  }
+
+  handleUpdate= (e) => {
+    e.preventDefault()
+    if (!this.canBeSubmitted()) {
+      return
+    } else {
+      this.props.updatePost(this.state)
       this.props.sortPostsDate()
       this.props.history.push('/')
     }
@@ -58,39 +69,39 @@ class PostForm extends Component {
             value={this.state.body}
           />
 
-          <input
-            type="text"
-            name="author"
-            placeholder="Author"
-            onChange={(event) => this.updateAuthor(event.target.value)}
-            value={this.state.author}
-          />
+          {this.props.type === "create"
+            ? <div>
+                <input
+                  type="text"
+                  name="author"
+                  placeholder="Author"
+                  onChange={(event) => this.updateAuthor(event.target.value)}
+                  value={this.state.author}
+                />
 
-          <fieldset selected="automotive">
-            {this.props.categories.map((category) =>
-              <div key={category.name}>
-              <input
-                type="radio"
-                id={category.name}
-                name='category'
-                value={category.name}
-                checked={this.state.category === category.name}
-                onChange={(event) => this.updateCategory(event.target.value)}
-              />
-              <label htmlFor={category.name}>{category.name}</label>
+                <fieldset selected="automotive">
+                  {this.props.categories.map((category) =>
+                    <div key={category.name}>
+                    <input
+                      type="radio"
+                      id={category.name}
+                      name='category'
+                      value={category.name}
+                      checked={this.state.category === category.name}
+                      onChange={(event) => this.updateCategory(event.target.value)}
+                    />
+                    <label htmlFor={category.name}>{category.name}</label>
+                    </div>
+                  )}
+                </fieldset>
               </div>
-            )}
-          </fieldset>
+            : null
+          }
 
-          <button
-            onClick={this.handleSubmit}
-            disabled={!isEnabled}
-          >
-            { this.props.type === "edit"
-              ? "Update post"
-              : "Save post"
-            }
-          </button>
+          {this.props.type === "create"
+            ? <button onClick={this.handleCreate} disabled={!isEnabled} >Save Post</button>
+            : <button onClick={this.handleUpdate} disabled={!isEnabled} >Update Post</button>
+          }
 
         </form>
       </div>
@@ -108,6 +119,7 @@ function mapStateToProps ({ categories }) {
 function mapDispatchToProps (dispatch) {
   return {
     createPost: (post) => dispatch(addPost(post)),
+    updatePost: (post) => dispatch(editPost(post)),
     sortPostsDate: () => dispatch(sortPostsDate())
   }
 }

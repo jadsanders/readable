@@ -16,6 +16,8 @@ export const fetchPostDetails = (id) =>
 export const fetchComments = (id) =>
   fetch(`${api}/posts/${id}/comments`, { headers })
   .then(res => res.json())
+  //.then(console.log(id))
+
 
 export const fetchCategories = () =>
   fetch(`${api}/categories`, { headers })
@@ -47,6 +49,19 @@ export const updateVote = (id, direction, entity) =>
         body: post.body,
         author: post.author,
         category: post.category
+      }),
+    }).then(res => res.json())
+
+  export const updatePost = (post) =>
+    fetch(`${api}/posts/${post.id}`, {
+      method: 'PUT',
+      headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: post.title,
+        body: post.body,
       }),
     }).then(res => res.json())
 

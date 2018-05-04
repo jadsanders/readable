@@ -1,38 +1,48 @@
 import React, { Component } from 'react';
-import * as APIUtil from '../../utils/api';
+import { connect } from 'react-redux';
 import PostForm from '../../components/forms/post_form/PostForm';
 import NothingFound from '../../components/errors/nothing_found/NothingFound';
 
+import { fetchPostDetails } from '../../actions/posts';
+
+
 class EditPostScreen extends Component {
 
-  state = {
-    currentPost: []
-  }
 
   componentDidMount() {
-    APIUtil
-    .fetchPostDetails(this.props.match.params.id)
-    .then((currentPost) => this.setState({currentPost}))
+    this.props.fetchPostDetails(this.props.match.params.id);
   }
 
   render() {
-
-    //console.log(this.state.currentPost)
-    //console.log(this.state.currentPost.length === 0 ? true : false)
-
     return(
       <div>
-        {this.state.currentPost.length !== 0
-          ? <PostForm
-            history={this.props.history}
-            state={this.state.currentPost}
-            type="edit"
-          />
-          : <NothingFound />
+
+        {this.props.postDetails.hasOwnProperty("error") === true &&
+          <NothingFound />
         }
+
+        {Object.keys(this.props.postDetails).length > 0 &&
+          <PostForm
+            state={this.props.postDetails}
+            history={this.props.history}
+          />
+        }
+
       </div>
     )
   }
 }
 
-export default EditPostScreen;
+function mapStateToProps (state) {
+  return {
+    postDetails: state.posts.postDetails
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    fetchPostDetails: (id) => dispatch(fetchPostDetails(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditPostScreen)

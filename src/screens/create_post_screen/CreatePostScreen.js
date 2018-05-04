@@ -22,6 +22,7 @@ class CreatePostScreen extends Component {
         <PostForm
           history={this.props.history}
           state={this.state}
+          type="create"
         />
       </div>
     )

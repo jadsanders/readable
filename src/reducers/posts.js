@@ -1,5 +1,9 @@
 import {
   RECEIVE_POSTS,
+  RECEIVE_POST_DETAILS,
+  RECEIVE_COMMENTS,
+  CLEAR_COMMENTS,
+  CLEAR_POST_DETAILS,
   SORT_POSTS_DATE,
   SORT_POSTS_VOTE,
   SORT_POSTS_COMMENTS,
@@ -12,11 +16,13 @@ const initialState = {
   byId: {},
   allIds: [],
   sortType: 'timestamp',
+  postDetails: {},
+  postComments: {}
 }
 
 export default function posts (state = initialState, action) {
 
-  const { posts, id, direction, post } = action
+  const { posts, id, direction, post, postDetails, postComments } = action
 
   switch (action.type) {
     case RECEIVE_POSTS:
@@ -28,6 +34,30 @@ export default function posts (state = initialState, action) {
          }, {}),
 
         allIds: posts.sort((a, b) => a.timestamp < b.timestamp).map((post) => post.id)
+      }
+
+    case RECEIVE_POST_DETAILS:
+      return {
+        ...state,
+        postDetails
+      }
+
+    case RECEIVE_COMMENTS:
+      return {
+        ...state,
+        postComments
+      }
+
+    case CLEAR_POST_DETAILS:
+      return {
+        ...state,
+        postDetails: {}
+      }
+
+    case CLEAR_COMMENTS:
+      return {
+        ...state,
+        postComments: {}
       }
 
     case SORT_POSTS_DATE:
@@ -78,6 +108,7 @@ export default function posts (state = initialState, action) {
         },
         allIds: [...state.allIds, post.id]
       }
+
 
     case DELETE_POST:
       return {
