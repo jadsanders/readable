@@ -23,19 +23,21 @@ class PostForm extends Component {
   updateAuthor = (text) => {this.setState({ author: text })}
   updateCategory = (text) => {this.setState({ category: text })}
 
-  //canBeSubmitted() {
-  //  const { title, body, author, category } = this.state;
-  //  return (
-      //title.length > 0 &&
-      //body.length > 0 &&
-      //author.length > 0 &&
-      //category.length
-  //  );
-  //}
+  canBeSubmitted() {
+    const { title, body, author, category } = this.state;
+    return (
+      title.length > 0 &&
+      body.length > 0 &&
+      author.length > 0 &&
+      category.length
+    );
+  }
 
   render() {
 
-    //const isEnabled = this.canBeSubmitted()
+    const isEnabled = this.canBeSubmitted()
+
+    console.log(this.state)
 
     return(
       <div>
@@ -82,7 +84,7 @@ class PostForm extends Component {
 
           <button
             onClick={this.handleSubmit}
-            //disabled={!isEnabled}
+            disabled={!isEnabled}
           >
             { this.props.type === "edit"
               ? "Update post"

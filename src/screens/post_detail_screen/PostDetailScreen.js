@@ -36,20 +36,20 @@ class PostDetailScreen extends Component {
         </div>
 
         <div className='post-detail-container'>
-          {currentPost !== undefined ?
-            <div>
-              <div className='post-detail-box'>
-                <h2>{currentPost.title}</h2>
-              </div>
+          {currentPost !== undefined
+            ? <div>
+                <div className='post-detail-box'>
+                  <h2>{currentPost.title}</h2>
+                </div>
 
-              <div className='post-comments-box'>
-                {this.state.comments.map((comment) =>
-                  <div className='comment-box' key={comment.id}>
-                    {comment.body}
-                  </div>
-                )}
+                <div className='post-comments-box'>
+                  {this.state.comments.map((comment) =>
+                    <div className='comment-box' key={comment.id}>
+                      {comment.body}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
 
             : <NothingFound />
           }
