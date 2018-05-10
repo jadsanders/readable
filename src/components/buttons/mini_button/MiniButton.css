@@ -9,14 +9,17 @@
 }
 
 .mini-button:hover {
-  cursor: pointer
+  cursor: pointer;
+  background-color: #E2E8EC;
 }
 
 .mini-button-custom {
   color: black
 }
 
-.mini-button-custom-active {
+.mini-button-custom-active,
+.mini-button-custom-active:hover {
   background-color: #63849a;
-  color: #fff
+  color: #fff;
+  cursor: default;
 }

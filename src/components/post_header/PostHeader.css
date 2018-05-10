@@ -1,17 +1,110 @@
-.postHeader {
-  padding: 25px;
-  margin-bottom: 15px;
-  background-color: #ede7e4;
-  border-bottom: 3px solid #e1dfde;
+.post-header {
+  padding: 25px 25px 0px 25px;
+  background-color: #F4F6F8;
+  border-bottom: 3px solid #63849a;
+  margin-bottom: 25px
 }
 
-.postHeader h3 {
-  margin: 0px
+.post-header h3 {
+  margin: 0px 0px 15px 0px
 }
 
-.postHeader h6 {
-  margin: 10px 0px 10px 0px
+.post-header h6 {
+  margin: 0px 0px 10px 0px;
+  font-style: italic;
+  color: rgba(0,0,0,0.5);
+
 }
+
+.post-header-title-container {
+  display: inline-block;
+  //background-color: grey;
+  width: calc(100% - 200px);
+}
+
+.post-header-action-buttons-container {
+  display: inline-block;
+  //background-color: red;
+  width: 200px;
+  text-align: right;
+  vertical-align: top
+}
+
+.post-header-body-container {
+  //border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 0px 0px 15px 0px;
+  margin: 0px 0px 15px 0px;
+}
+
+.post-header-engagement-box {
+  color: rgba(0,0,0,0.5);
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+
+
+.post-header-bottom-box {
+  //background-color: grey;
+  margin: 15px 0px 0px 0px
+}
+
+.post-action-box {
+  display: inline-block;
+  padding: 5px
+}
+
+.edit-post-link {
+  font-size: 18px;
+  color: rgba(0,0,0,0.15);
+  transition: all 0.3s;
+}
+
+.edit-post-link:hover {
+  color: rgba(0,0,0,0.6);
+}
+
+.delete-post-link {
+  cursor: pointer;
+  font-size: 18px;
+  color: rgba(0,0,0,0.15);
+  transition: all 0.3s;
+}
+
+.delete-post-link:hover {
+  color: rgba(0,0,0,0.6);
+}
+
+.confirmation-text {
+  font-size: 12px;
+  padding: 7px 10px 7px 10px;
+  vertical-align: top;
+}
+
+.confirm-abort-delete-link {
+  cursor: pointer;
+  font-size: 16px;
+  padding: 3px;
+  border-radius: 50px;
+  margin-top: 10px;
+}
+
+.confirm-btn {
+  color: #69AD7F;
+  background-color: #AEE3BF;
+  font-weight: bold
+}
+
+.abort-btn {
+  color: #D86152;
+  background-color: #F6BBB4;
+  font-weight: bold
+}
+
+
+
+
+
 
 .postheader-link,
 .postheader-link:visited,
@@ -23,12 +116,19 @@
 
 .vote-thumb {
   cursor: pointer;
-  margin-right: 15px;
-  color: #774c60;
+  color: rgba(0,0,0,0.3);
+  font-size: 18px;
+  margin-right: 10px;
+  margin-bottom: -3px;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
    -khtml-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  transition: all 0.3s;
+}
+
+.vote-tumb:hover {
+  color: rgba(0,0,0,0.6);
 }

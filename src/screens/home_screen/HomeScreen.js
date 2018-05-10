@@ -8,7 +8,8 @@ import PostsCategoryFilter from '../../components/posts_category_filter/PostsCat
 
 import './HomeScreen.css';
 
-import { fetchPosts, clearPostDetails, clearComments } from '../../actions/posts';
+import { fetchPosts, clearPostDetails } from '../../actions/posts';
+import { clearComments } from '../../actions/comments';
 import { fetchCategories } from '../../actions/categories';
 
 class HomeScreen extends Component {

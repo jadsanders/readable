@@ -3,12 +3,11 @@ import * as APIUtil from '../utils/api';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const RECEIVE_POST_DETAILS = 'RECEIVE_POST_DETAILS';
 export const CLEAR_POST_DETAILS = 'CLEAR_POST_DETAILS';
-export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
-export const CLEAR_COMMENTS = 'CLEAR_COMMENTS';
 export const SORT_POSTS_DATE = 'SORT_POSTS_DATE';
 export const SORT_POSTS_VOTE = 'SORT_POSTS_VOTE';
 export const SORT_POSTS_COMMENTS = 'SORT_POSTS_COMMENTS';
-export const POST_UPDATE_VOTE = 'POST_UP_VOTE';
+export const POST_UPDATE_VOTE = 'POST_UPDATE_VOTE';
+export const POST_DETAIL_UPDATE_VOTE = 'POST_DETAIL_UPDATE_VOTE';
 export const CREATE_POST = 'CREATE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
 export const DELETE_POST = 'DELETE_POST';
@@ -42,31 +41,11 @@ export const fetchPostDetails = (id) => dispatch => (
 );
 
 
-// get comments of a single posts
-export const receiveComments = postComments => ({
-  type: RECEIVE_COMMENTS,
-  postComments
-});
-
-export const fetchComments = (id) => dispatch => (
-  APIUtil
-    .fetchComments(id)
-    .then(postComments => dispatch(receiveComments(postComments)))
-);
-
 
 // clear post details
 export function clearPostDetails () {
   return {
     type: CLEAR_POST_DETAILS
-  }
-};
-
-
-// clear comments
-export function clearComments () {
-  return {
-    type: CLEAR_COMMENTS
   }
 };
 
@@ -108,6 +87,22 @@ export const updateVote = (id, direction, entity) => dispatch => (
   APIUtil
     .updateVote(id, direction, entity)
     .then(dispatch(postUpdateVote(id, direction)))
+);
+
+
+// update voteScore of post detail
+export function postDetailUpdateVote (id, direction) {
+  return {
+    type: POST_DETAIL_UPDATE_VOTE,
+    id,
+    direction
+  }
+};
+
+export const updateDetailVote = (id, direction, entity) => dispatch => (
+  APIUtil
+    .updateVote(id, direction, entity)
+    .then(dispatch(postDetailUpdateVote(id, direction)))
 );
 
 
@@ -153,3 +148,9 @@ export const removePost = (id) => dispatch => (
     .deletePost(id)
     .then(dispatch(deletePost(id)))
 );
+
+// delete postDetails
+export const removePostDetails = (id) => dispatch => (
+  APIUtil
+    .deletePost(id)
+)

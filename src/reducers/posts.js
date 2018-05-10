@@ -1,28 +1,31 @@
 import {
   RECEIVE_POSTS,
   RECEIVE_POST_DETAILS,
-  RECEIVE_COMMENTS,
-  CLEAR_COMMENTS,
   CLEAR_POST_DETAILS,
   SORT_POSTS_DATE,
   SORT_POSTS_VOTE,
   SORT_POSTS_COMMENTS,
   POST_UPDATE_VOTE,
+  POST_DETAIL_UPDATE_VOTE,
   CREATE_POST,
   DELETE_POST,
 } from '../actions/posts'
+
+import {
+  CREATE_COMMENT,
+  DELETE_COMMENT,
+} from '../actions/comments'
 
 const initialState = {
   byId: {},
   allIds: [],
   sortType: 'timestamp',
-  postDetails: {},
-  postComments: {}
+  postDetails: {}
 }
 
 export default function posts (state = initialState, action) {
 
-  const { posts, id, direction, post, postDetails, postComments } = action
+  const { posts, id, direction, post, postDetails } = action
 
   switch (action.type) {
     case RECEIVE_POSTS:
@@ -39,25 +42,13 @@ export default function posts (state = initialState, action) {
     case RECEIVE_POST_DETAILS:
       return {
         ...state,
-        postDetails
-      }
-
-    case RECEIVE_COMMENTS:
-      return {
-        ...state,
-        postComments
+        postDetails: Object.keys(postDetails).length === 0 ? {error: 'There was an error.'} : postDetails
       }
 
     case CLEAR_POST_DETAILS:
       return {
         ...state,
         postDetails: {}
-      }
-
-    case CLEAR_COMMENTS:
-      return {
-        ...state,
-        postComments: {}
       }
 
     case SORT_POSTS_DATE:
@@ -99,6 +90,15 @@ export default function posts (state = initialState, action) {
         }
       }
 
+    case POST_DETAIL_UPDATE_VOTE:
+      return {
+        ...state,
+        postDetails: {
+          ...state.postDetails,
+          voteScore: direction === 'upVote' ? state.postDetails.voteScore + 1 : state.postDetails.voteScore - 1
+        }
+      }
+
     case CREATE_POST:
       return {
         ...state,
@@ -122,6 +122,24 @@ export default function posts (state = initialState, action) {
         },
 
         allIds: state.allIds.filter(item => item !== id)
+      }
+
+    case CREATE_COMMENT:
+      return {
+        ...state,
+        postDetails: {
+          ...state.postDetails,
+          commentCount: state.postDetails.commentCount + 1
+        }
+      }
+
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        postDetails: {
+          ...state.postDetails,
+          commentCount: state.postDetails.commentCount - 1
+        }
       }
 
 

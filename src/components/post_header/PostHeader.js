@@ -1,40 +1,97 @@
 import React, { Component } from 'react';
 import './PostHeader.css';
-import * as Utils from '../../utils/helpers';
+import { dateConvert } from '../../utils/helpers';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateVote, sortPostsDate, removePost } from '../../actions/posts';
 
 class PostHeader extends Component {
+
+  state = {
+    deleteVisible: false
+  }
+
+  toggleDelete = () => {
+    this.setState({ deleteVisible: !this.state.deleteVisible })
+  }
+
   render() {
 
-    const { title, commentCount, author, voteScore, timestamp, category, id } = this.props.post
-    const { clearSort, upVote, downVote, removePost } = this.props
+    const { title, body, commentCount, author, voteScore, timestamp, category, id } = this.props.post
+    const { clearSort, updateVote, removePost } = this.props
 
     return (
-      <div>
-        <div className='postHeader'>
+      <div className='post-header'>
+
+        <div>
           <Link
             className='postheader-link'
             to={`/${category}/${id}`}
             key={id}
             onClick={clearSort}
           >
-            <h3>{title}</h3>
+            <div className="post-header-title-container">
+              <h3>{title}</h3>
+            </div>
           </Link>
 
-          <h5>Comments: {commentCount} || Votes: {voteScore}</h5>
-          <h6>Written by {author} at {Utils.timeConvert(timestamp)}</h6>
 
-          <i className="large material-icons vote-thumb" onClick={() => downVote(id, 'downVote', 'posts')}>thumb_down</i>
-          <i className="large material-icons vote-thumb" onClick={() => upVote(id, 'upVote', 'posts')}>thumb_up</i>
 
-          <button onClick={() => removePost(id)}>Delete</button>
-          <Link
-            to={`/posts/${id}/edit`}
-          >
-            Edit
-          </Link>
+
+          <div className="post-header-action-buttons-container not-selectable">
+
+            {this.state.deleteVisible === false &&
+              <div>
+                <div className="post-action-box">
+                  <Link to={`/posts/${id}/edit`}>
+                    <i className="material-icons edit-post-link">edit</i>
+                  </Link>
+                </div>
+
+                <div className="post-action-box">
+                  <div>
+                    <i onClick={() => this.toggleDelete()} className="material-icons delete-post-link">delete</i>
+                  </div>
+                </div>
+              </div>
+            }
+
+            {this.state.deleteVisible === true &&
+              <div className="not-selectable">
+
+                <div className="post-action-box confirmation-text">
+                  Are your sure?
+                </div>
+
+                <div className="post-action-box">
+                  <i onClick={() => removePost(id)} className="material-icons confirm-abort-delete-link confirm-btn">done</i>
+                </div>
+
+                <div className="post-action-box">
+                  <i onClick={() => this.toggleDelete()} className="material-icons confirm-abort-delete-link abort-btn">close</i>
+                </div>
+
+              </div>
+            }
+
+          </div>
+        </div>
+
+        <div className="post-header-body-container">
+          {body.replace(/(([^\s]+\s\s*){10})(.*)/,"$1…")}
+        </div>
+
+        <div className="post-header-engagement-box not-selectable">
+          <h5>
+            {commentCount === null ? '0' : commentCount} comments&nbsp;&nbsp;&nbsp;&nbsp;{voteScore} votes
+            &nbsp;&nbsp;&nbsp;
+            <i className="material-icons vote-thumb" onClick={() => updateVote(id, 'downVote', 'posts')}>thumb_down</i>
+            <i className="material-icons vote-thumb" onClick={() => updateVote(id, 'upVote', 'posts')}>thumb_up</i>
+          </h5>
+        </div>
+
+        <div className="post-header-bottom-box">
+          <h6>{author} at {dateConvert(timestamp)}</h6>
         </div>
 
       </div>
@@ -45,9 +102,8 @@ class PostHeader extends Component {
 function mapDispatchToProps (dispatch) {
   return {
     clearSort: () => dispatch(sortPostsDate()),
-    upVote: (id, direction, entity) => dispatch(updateVote(id, direction, entity)),
-    downVote: (id, direction, entity) => dispatch(updateVote(id, direction, entity)),
-    removePost: (id) => dispatch(removePost(id))
+    updateVote: (id, direction, entity) => dispatch(updateVote(id, direction, entity)),
+    removePost: (id) => dispatch(removePost(id)),
   }
 }
 

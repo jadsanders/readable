@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { addPost, editPost, sortPostsDate } from '../../../actions/posts';
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 
 class PostForm extends Component {
 
@@ -47,8 +47,6 @@ class PostForm extends Component {
   render() {
 
     const isEnabled = this.canBeSubmitted()
-
-    console.log(this.state)
 
     return(
       <div>
@@ -102,6 +100,10 @@ class PostForm extends Component {
             ? <button onClick={this.handleCreate} disabled={!isEnabled} >Save Post</button>
             : <button onClick={this.handleUpdate} disabled={!isEnabled} >Update Post</button>
           }
+
+          <Link to='/' onClick={this.props.sortPostsDate}>Discard</Link>
+
+
 
         </form>
       </div>

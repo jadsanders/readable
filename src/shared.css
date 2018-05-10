@@ -1,10 +1,40 @@
+.main-screen {
+  width: calc(100% - 425px);
+  //background-color: yellow;
+  padding: 50px 25px 50px 50px;
+  float: left;
+  transition: all 0.3s;
+}
+
+.sidebar-right {
+  width: 275px;
+  text-align: center;
+  //background-color: grey;
+  float: right;
+  padding: 50px 50px 50px 25px;
+  transition: all 0.3s;
+}
+
+@media only screen and (max-width: 900px) {
+  .main-screen {
+    width: calc(100% - 50px);
+    padding: 25px;
+  }
+
+  .sidebar-right {
+    width: calc(100% - 50px);
+    padding: 25px;
+  }
+}
+
+
 .component-header-box {
   //background-color: grey;
   height: 35px;
   padding: 15px 0px 0px 0px;
   border-bottom: 1px solid #c6d2da;
   margin-bottom: 25px;
-  text-align: center;
+
 }
 
 h3 {
@@ -24,4 +54,13 @@ h5 {
 .material-icons {
   vertical-align: middle;
   margin-top: -5px;
+}
+
+.not-selectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+   -khtml-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }

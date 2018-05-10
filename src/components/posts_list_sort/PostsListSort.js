@@ -8,7 +8,7 @@ import './PostsListSort.css';
 class PostsListSort extends Component {
   render() {
     return (
-      <div>
+      <div className="not-selectable">
 
         <MiniButton
           onClick={ () => this.props.sortPostsDate() }

@@ -13,14 +13,13 @@ import './PostsCategoryFilter.css';
 
 class PostsCategoryFilter extends Component {
 
-
   render() {
     const { categories } = this.props
     return(
       <div>
 
         <div className='component-header-box'>
-          <h3 style={this.header}>Categories</h3>
+          <h3>Categories</h3>
         </div>
 
         {categories.map((cat) =>

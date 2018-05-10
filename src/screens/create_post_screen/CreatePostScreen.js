@@ -11,9 +11,6 @@ class CreatePostScreen extends Component {
     body: [],
     author: [],
     category: [],
-    voteScore: 1,
-    deleted: false,
-    commentCount: 0
   }
 
   render() {

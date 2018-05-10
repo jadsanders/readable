@@ -1,0 +1,26 @@
+.post-detail-header {
+  padding-left: 15px !important;
+}
+
+.post-detail-box {
+  padding: 0px 15px 0px 15px;
+}
+
+.post-details-row {
+  margin: 25px 0px 25px 0px;
+}
+
+.post-detail-body {
+  margin-bottom: 75px
+}
+
+.post-detail-vote-thumb {
+  margin: 5px;
+  color: #63849a;
+  cursor: pointer;
+}
+
+.post-detail-action-box {
+  border-top: 1px solid #c6d2da;
+  padding: 25px 0px 0px 0px
+}

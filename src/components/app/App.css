@@ -7,17 +7,14 @@
   background-size: 40px;
 }
 
-
 .content-container {
   width: 100%;
   transition: all 0.3s;
 }
 
-
-
-@media only screen and (min-width: 1400px) {
+@media only screen and (min-width: 1300px) {
   .content-container {
-    width: 70%;
-    margin-left: 15%
+    width: 80%;
+    margin-left: 10%
   }
 }

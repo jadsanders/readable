@@ -16,4 +16,5 @@
 .small-button-blue-active {
   background-color: #63849a;
   color: #fff;
+  cursor: default;
 }
