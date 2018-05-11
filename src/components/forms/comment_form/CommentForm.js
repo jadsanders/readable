@@ -49,15 +49,18 @@ class CommentForm extends Component {
 
   render() {
 
+    console.log(this.canBeSubmitted())
+
     return(
       <div>
         <form>
           <input
             type="text"
             name="author"
-            placeholder="Author"
+            placeholder="Your Name"
             onChange={(event) => this.updateAuthor(event.target.value)}
             value={this.state.author}
+            className="comment-form-author"
           />
 
           <textarea
@@ -65,7 +68,7 @@ class CommentForm extends Component {
             placeholder="Your comment"
             onChange={(event) => this.updateBody(event.target.value)}
             value={this.state.body}
-            className="comment-body-input"
+            className="comment-form-body"
           />
 
           <MediumButton

@@ -132,7 +132,7 @@ class PostDetails extends Component {
               : null
             }
 
-            <div className="comment-form">
+            <div className="comment-form-container">
               <CommentForm
                 state={this.commentFormState}
                 location={this.props.location}

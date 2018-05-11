@@ -1,6 +1,16 @@
-.comment-body-input {
-  height: 100px;
-  resize: none;
+.comment-form-author {
+  padding: 7px;
   width: 200px;
-  border: none
+  font-size: 14px;
+  border: 1px solid rgba(0,0,0,0.15);
+}
+
+.comment-form-body {
+  height: 80px;
+  resize: none;
+  width: calc(100% - 14px);
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 7px;
+  font-size: 14px;
+  margin: 15px 0px 25px 0px;
 }

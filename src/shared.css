@@ -64,3 +64,18 @@ h5 {
       -ms-user-select: none;
           user-select: none;
 }
+
+::placeholder {
+  color: lightgray;
+  font-family: montserrat;
+}
+
+:-ms-input-placeholder {
+   color: lightgray;
+   font-family: montserrat;
+}
+
+::-ms-input-placeholder {
+   color: lightgray;
+   font-family: montserrat;
+}
