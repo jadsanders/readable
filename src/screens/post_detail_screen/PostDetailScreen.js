@@ -7,15 +7,26 @@ import PostDetails from '../../components/post_details/PostDetails';
 
 import './PostDetailScreen.css';
 
-import { fetchPostDetails } from '../../actions/posts';
+import { fetchPostDetails, clearPosts } from '../../actions/posts';
 import { fetchComments } from '../../actions/comments';
+import { clearCategories } from '../../actions/categories';
 
 class PostDetailScreen extends Component {
 
   componentDidMount() {
     this.props.fetchPostDetails(this.props.match.params.id);
     this.props.fetchComments(this.props.match.params.id);
+    this.props.clearCategories();
+    this.props.clearPosts();
   }
+
+  urlIsValid() {
+    return (
+      this.props.match.params.category === this.props.postDetails.category &&
+      this.props.match.params.id === this.props.postDetails.id
+    )
+  }
+
 
   render() {
     return (
@@ -30,7 +41,7 @@ class PostDetailScreen extends Component {
         <div className="standard-container">
           {Object.keys(this.props.postDetails).length === 0
             ? null
-            : this.props.postDetails.hasOwnProperty("error") === true
+            : this.props.postDetails.hasOwnProperty("error") === true || !this.urlIsValid()
               ? <NothingFound />
               : <PostDetails location={this.props} history={this.props.history}/>
           }
@@ -51,6 +62,8 @@ function mapDispatchToProps (dispatch) {
   return {
     fetchPostDetails: (id) => dispatch(fetchPostDetails(id)),
     fetchComments: (id) => dispatch(fetchComments(id)),
+    clearCategories: () => dispatch(clearCategories()),
+    clearPosts: () => dispatch(clearPosts()),
   }
 }
 

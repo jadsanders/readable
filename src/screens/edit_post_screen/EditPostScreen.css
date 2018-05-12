@@ -1,0 +1,16 @@
+.edit-post-meta-info-box {
+  border-top: 1px solid #c6d2da;
+  margin: 50px 0px 75px 0px;
+  padding: 15px 0px 0px 0px;
+}
+
+.edit-post-meta-info-item {
+  background-color: rgba(0,0,0,0.1);
+  color: rgba(0,0,0,0.5);
+  float: left;
+  padding: 8px 15px;
+  font-size: 12px;
+  margin-right: 10px;
+
+
+}

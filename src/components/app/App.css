@@ -1,11 +1,19 @@
 .navbar {
   height: 80px;
   background-color: #1e2332;
+  text-align: center;
+}
+
+.brand {
   background-image: url('../../images/rocket_takeoff.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 50px;
+  display: inline-block;
+  height: 80px;
+  width: 80px;
 }
+
 
 .content-container {
   width: 100%;

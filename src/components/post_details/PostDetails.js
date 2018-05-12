@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import uuidv4 from 'uuid';
 import { Link } from 'react-router-dom';
 
-import CategoryBadge from '../../components/buttons/small_button/SmallButton';
 import CommentForm from '../../components/forms/comment_form/CommentForm';
 import CommentHeader from '../../components/comment_header/CommentHeader';
 

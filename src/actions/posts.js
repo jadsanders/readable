@@ -11,6 +11,7 @@ export const POST_DETAIL_UPDATE_VOTE = 'POST_DETAIL_UPDATE_VOTE';
 export const CREATE_POST = 'CREATE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
 export const DELETE_POST = 'DELETE_POST';
+export const CLEAR_POSTS = 'CLEAR_POSTS';
 
 
 
@@ -154,3 +155,10 @@ export const removePostDetails = (id) => dispatch => (
   APIUtil
     .deletePost(id)
 )
+
+// clear all posts
+export function clearPosts () {
+  return {
+    type: CLEAR_POSTS
+  }
+};

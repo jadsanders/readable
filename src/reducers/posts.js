@@ -9,6 +9,7 @@ import {
   POST_DETAIL_UPDATE_VOTE,
   CREATE_POST,
   DELETE_POST,
+  CLEAR_POSTS,
 } from '../actions/posts'
 
 import {
@@ -19,7 +20,7 @@ import {
 const initialState = {
   byId: {},
   allIds: [],
-  sortType: 'timestamp',
+  sortType: {},
   postDetails: {}
 }
 
@@ -36,7 +37,8 @@ export default function posts (state = initialState, action) {
            return id
          }, {}),
 
-        allIds: posts.sort((a, b) => a.timestamp < b.timestamp).map((post) => post.id)
+        allIds: posts.sort((a, b) => a.timestamp < b.timestamp).map((post) => post.id),
+        sortType: 'timestamp'
       }
 
     case RECEIVE_POST_DETAILS:
@@ -140,6 +142,14 @@ export default function posts (state = initialState, action) {
           ...state.postDetails,
           commentCount: state.postDetails.commentCount - 1
         }
+      }
+
+    case CLEAR_POSTS:
+      return {
+        ...state,
+        byId: {},
+        allIds: [],
+        sortType: {}
       }
 
 

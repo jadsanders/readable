@@ -21,9 +21,13 @@ class HomeScreen extends Component {
     this.props.clearComments();
   }
 
+
+
   render() {
     return (
       <div>
+
+
 
         <div className="sidebar-right not-selectable">
           <div className="category-filter-container">

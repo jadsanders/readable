@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { Route, Switch, BrowserRouter, Link } from 'react-router-dom';
 
 import HomeScreen from '../../screens/home_screen/HomeScreen';
 import PostDetailScreen from '../../screens/post_detail_screen/PostDetailScreen';
@@ -15,7 +14,13 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <div className="navbar"></div>
+
+          <div className="navbar">
+            <Link to="/">
+              <div className="brand" />
+            </Link>
+          </div>
+
           <div className="content-container">
             <Switch>
               <Route exact path="/" component={HomeScreen} />
@@ -25,6 +30,7 @@ class App extends Component {
               <Route exact path="/:category/:id" component={PostDetailScreen} />
             </Switch>
           </div>
+
         </div>
       </BrowserRouter>
     );
