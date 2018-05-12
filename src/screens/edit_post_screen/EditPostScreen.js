@@ -14,18 +14,6 @@ class EditPostScreen extends Component {
     this.props.fetchPostDetails(this.props.match.params.id);
   }
 
-  customStyle1 = {
-    paddingLeft: '15px'
-  }
-
-  customStyle2 = {
-    padding: '0px 15px 0px 15px',
-  }
-
-  detailsRow = {
-    margin: '15px 0px 15px 0px'
-  }
-
   render() {
 
     const { author, timestamp, category, voteScore, comments } = this.props.postDetails
@@ -34,30 +22,10 @@ class EditPostScreen extends Component {
       <div>
 
         {Object.keys(this.props.postDetails).length > 0 &&
-          <div>
+          <div className="standard-container">
 
-            <div className="sidebar-right">
-              <div className='component-header-box'></div>
-              <div style={this.customStyle2}>
-                <div style={this.detailsRow}>
-                  <h5>Written by {author} on {dateConvert(timestamp)}</h5>
-                </div>
-                <div style={this.detailsRow}>
-                  <CategoryBadge color='blue' active={true} buttonText={capitalize(category)}/>
-                </div>
-                <div style={this.detailsRow}>
-                  <h3>{voteScore}</h3>
-                  <h5>Votes</h5>
-                </div>
-                <div style={this.detailsRow}>
-                  <h3>{comments === undefined ? '0' : comments}</h3>
-                  <h5>Comments</h5>
-                </div>
-              </div>
-            </div>
-
-            <div className="main-screen">
-              <div className='component-header-box' style={this.customStyle1}>
+            <div>
+              <div className='component-header-box'>
                 <h3>Edit Post</h3>
               </div>
               <PostForm

@@ -1,31 +1,32 @@
-.medium-button {
+.small-form-button {
   display: inline-block;
   border-radius: 5px;
-  margin: 0 auto;
   text-align: center;
-  padding: 13px 30px 10px 30px;
-  font-size: 14px;
+  padding: 5px 15px 4px 15px;
+  font-size: 12px;
   transition: all 0.3s;
+  margin: 0px 10px 0px 0px;
 }
 
-.medium-button:hover {
+.small-form-button:hover {
   cursor: pointer;
 }
 
-.medium-button-green {
+
+.small-form-button-green {
   background-color: #80d39b;
   color: #fff;
   border-bottom: 3px solid #75c08d;
 }
 
-.medium-button-grey {
+.small-form-button-grey {
   background-color: rgba(0,0,0,0.2);
   color: #fff;
   border-bottom: 3px solid rgba(0,0,0,0.1);
   cursor: default !important;
 }
 
-.medium-button-blue {
+.small-form-button-blue {
   background-color: #A9BBC7;
   color: #fff;
   border-bottom: 3px solid #8DA5B5;

@@ -1,18 +1,19 @@
 .left-postlist-header-box {
-  width: calc(20% - 30px);
+  width: 60px;
   height: 20px;
   display: inline-block;
   text-align: left;
-  padding: 15px;
+  padding: 15px 15px 15px 0px;
   vertical-align: top;
-  margin-top: -15px
+  margin-top: -15px;
+  //background-color: yellow;
 }
 .right-postlist-header-box {
-  width: calc(80% - 30px);
+  width: calc(100% - 75px);
   height: 14px;
   display: inline-block;
   text-align: right;
-  padding: 15px;
-  padding-top: 21px;
-  margin-top: -15px
+  padding: 21px -10px 15px 15px;
+  margin-top: -15px;
+  //background-color: grey
 }

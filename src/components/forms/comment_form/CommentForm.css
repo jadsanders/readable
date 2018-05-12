@@ -1,16 +1,46 @@
 .comment-form-author {
-  padding: 7px;
+  padding: 10px 15px 10px 15px;
   width: 200px;
   font-size: 14px;
-  border: 1px solid rgba(0,0,0,0.15);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-left: 3px solid rgba(0,0,0,0.15);
+  transition: all 0.3s;
+}
+
+.comment-form-author:focus {
+  outline: none;
+  border: 1px solid #F9D9B8;
+  box-shadow: none;
+  border-left: 3px solid #F9D9B8;
+}
+
+.comment-form-has-value {
+  border: 1px solid #AEE3BF !important;
+  border-left: 3px solid #AEE3BF !important;
 }
 
 .comment-form-body {
   height: 80px;
   resize: none;
-  width: calc(100% - 14px);
-  border: 1px solid rgba(0,0,0,0.15);
-  padding: 7px;
+  width: calc(100% - 34px);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-left: 3px solid rgba(0,0,0,0.15);
+  padding: 15px;
   font-size: 14px;
   margin: 15px 0px 25px 0px;
+  transition: all 0.3s;
+}
+
+.comment-form-body:focus {
+  outline: none;
+  border: 1px solid #F9D9B8;
+  box-shadow: none;
+  border-left: 3px solid #F9D9B8;
+}
+
+.comment-form-required {
+  font-size: 11px;
+  padding: 25px 5px 5px 5px;
+  color: rgba(0,0,0,0.4);
+  font-style: italic;
 }

@@ -1,0 +1,112 @@
+.post-form h5 {
+  color: rgba(0,0,0,0.15);
+  font-weight: bold;
+  margin: 15px 0px 10px 0px;
+  font-size: 14px;
+}
+
+.post-form-title {
+  padding: 10px 15px 10px 15px;
+  width: calc(100% - 34px);
+  font-size: 14px;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-left: 3px solid rgba(0,0,0,0.15);
+  transition: all 0.3s;
+  margin: 0px 0px 25px 0px;
+}
+
+.post-form-title:focus {
+  outline: none;
+  border: 1px solid #F9D9B8;
+  box-shadow: none;
+  border-left: 3px solid #F9D9B8;
+}
+
+.post-form-body {
+  height: 240px;
+  resize: none;
+  width: calc(100% - 34px);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-left: 3px solid rgba(0,0,0,0.15);
+  padding: 15px;
+  font-size: 14px;
+  transition: all 0.3s;
+  margin: 0px 0px 25px 0px;
+}
+
+.post-form-body:focus {
+  outline: none;
+  border: 1px solid #F9D9B8;
+  box-shadow: none;
+  border-left: 3px solid #F9D9B8;
+}
+
+.post-form-author {
+  padding: 10px 15px 10px 15px;
+  width: calc(50% - 34px);
+  font-size: 14px;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-left: 3px solid rgba(0,0,0,0.15);
+  transition: all 0.3s;
+  margin: 0px 0px 25px 0px;
+}
+
+.post-form-author:focus {
+  outline: none;
+  border: 1px solid #F9D9B8;
+  box-shadow: none;
+  border-left: 3px solid #F9D9B8;
+}
+
+
+.post-form-category-select {
+  border: none;
+  padding: 0;
+  margin-bottom: 75px;
+}
+
+.post-form-category-select-item {
+  display: inline-block;
+  margin: 20px 10px 0px 0px;
+}
+
+.post-form-category-select-item input {
+  margin-right: 5px;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.post-form-category-select-item label {
+  font-family: montserrat;
+  font-size: 12px;
+  color: rgba(0,0,0,0.3);
+  cursor: pointer;
+  background-color: rgba(0,0,0,0.1);
+  padding: 7px 18px 7px 18px;
+  border-radius: 25px;
+  transition: all 0.3s
+}
+
+.post-form-category-label-active {
+  color: #75C08D !important;
+  background-color: #DCF3E3 !important;
+}
+
+.post-form-has-value {
+  border: 1px solid #AEE3BF !important;
+  border-left: 3px solid #AEE3BF !important;
+}
+
+.post-form-first-button {
+  margin-right: 15px;
+  display: inline-block;
+}
+
+.post-form-required {
+  margin-bottom: 250px;
+  font-size: 11px;
+  padding: 25px 5px 5px 5px;
+  color: rgba(0,0,0,0.4);
+  font-style: italic;
+}

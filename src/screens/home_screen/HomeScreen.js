@@ -25,12 +25,12 @@ class HomeScreen extends Component {
     return (
       <div>
 
-        <div className="sidebar-right">
+        <div className="sidebar-right not-selectable">
           <div className="category-filter-container">
             <PostsCategoryFilter path={this.props.match.params.category} />
           </div>
 
-          <div className="new-post-button-container">
+          <div className="new-post-button-container not-selectable">
             <Link to="/posts/new">
               <LargeButton
                 buttonText="New Post"
@@ -40,7 +40,7 @@ class HomeScreen extends Component {
           </div>
         </div>
 
-        <div className="main-screen">
+        <div className="main-screen not-selectable">
           <PostsList path={this.props.match.params.category}/>
         </div>
 

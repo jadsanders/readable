@@ -3,6 +3,8 @@ import { dateConvert, timeConvert } from '../../utils/helpers';
 import { connect } from 'react-redux';
 import { updateCommentVote, removeComment, sortCommentsDate, editComment } from '../../actions/comments';
 
+import SmallFormButton from '../buttons/small_form_button/SmallFormButton';
+
 
 import './CommentHeader.css';
 
@@ -21,14 +23,28 @@ class CommentHeader extends Component {
   }
 
   updateBody = (text) => {this.setState({ body: text })}
-  toggleForm = () => {this.setState({ editFormVisible: !this.state.editFormVisible })}
+  toggleForm = () => {
+    this.setState({
+      editFormVisible: !this.state.editFormVisible,
+      body: this.props.comment.body
+    })
+  }
 
   handleUpdate = (e) => {
     e.preventDefault()
-
+    if (!this.canBeUpdated()) {
+      return
+    } else {
       this.props.updateComment(this.state)
       this.props.sortCommentsDate()
       this.setState({ editFormVisible: false })
+    }
+  }
+
+  canBeUpdated() {
+    return (
+      this.state.body.length > 0
+    );
   }
 
   render() {
@@ -54,24 +70,37 @@ class CommentHeader extends Component {
                   className="edit-comment-body-input"
                   autoFocus={true}
                 />
-                <button onClick={this.handleUpdate}>Update</button>
-              </form>
-              <button onClick={this.toggleForm}>Discard</button>
 
+              </form>
+              <SmallFormButton
+                buttonText="Update"
+                color={this.canBeUpdated() ? "green" : "grey"}
+                onClick={this.handleUpdate}
+              />
+              <SmallFormButton
+                buttonText="Discard"
+                color="blue"
+                onClick={this.toggleForm}
+              />
             </div>
           : <div className="comment-body">{body}</div>
         }
 
         <div className="comment-vote-box not-selectable">
-          {voteScore === null ? '0' : voteScore} votes
+          {voteScore === null ? '0' : voteScore} vote{voteScore === 1 || voteScore === -1 ? null : "s"}
           <i className="material-icons" onClick={() => updateVote(id, 'downVote', 'comments')}>thumb_down</i>
           <i className="material-icons" onClick={() => updateVote(id, 'upVote', 'comments')}>thumb_up</i>
         </div>
+
+
+
 
         <div className="comment-actions-container">
 
           {this.state.deleteVisible === false &&
             <div className="not-selectable">
+
+
               <div className="comment-action-box">
                 <i onClick={this.toggleForm} className="material-icons edit-comment-link">edit</i>
               </div>
@@ -81,14 +110,16 @@ class CommentHeader extends Component {
                   <i onClick={() => this.toggleDelete()} className="material-icons delete-comment-link">delete</i>
                 </div>
               </div>
+
+
             </div>
           }
 
           {this.state.deleteVisible === true &&
             <div className="not-selectable">
 
-              <div className="comment-action-box confirmation-text">
-                Are your sure?
+              <div className="comment-action-box comment-confirmation-text">
+                Are you sure?
               </div>
 
               <div className="comment-action-box">

@@ -47,37 +47,37 @@ class CommentForm extends Component {
     );
   }
 
+
   render() {
-
-    console.log(this.canBeSubmitted())
-
     return(
       <div>
+        
         <form>
           <input
             type="text"
             name="author"
-            placeholder="Your Name"
+            placeholder="Your name*"
             onChange={(event) => this.updateAuthor(event.target.value)}
             value={this.state.author}
-            className="comment-form-author"
+            className={this.state.author.length > 0 ? "comment-form-author comment-form-has-value" : "comment-form-author"}
           />
 
           <textarea
             name="body"
-            placeholder="Your comment"
+            placeholder="Your comment*"
             onChange={(event) => this.updateBody(event.target.value)}
             value={this.state.body}
-            className="comment-form-body"
+            className={this.state.body.length > 0 ? "comment-form-body comment-form-has-value" : "comment-form-body"}
           />
 
           <MediumButton
-            color="green"
+            color={this.canBeSubmitted() ? "green" : "grey"}
             buttonText="Add Comment"
             onClick={this.handleCreate}
           />
 
         </form>
+        <div className="comment-form-required">*required</div>
       </div>
     )
   }

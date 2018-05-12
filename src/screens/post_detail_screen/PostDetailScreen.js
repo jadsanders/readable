@@ -22,12 +22,12 @@ class PostDetailScreen extends Component {
       <div>
 
         <Link to='/'>
-          <div className='home-button not-selectable'>
+          <div className="home-button not-selectable">
             <i className="material-icons home-icon">home</i>Home
           </div>
         </Link>
 
-        <div className='post-detail-container'>
+        <div className="standard-container">
           {Object.keys(this.props.postDetails).length === 0
             ? null
             : this.props.postDetails.hasOwnProperty("error") === true

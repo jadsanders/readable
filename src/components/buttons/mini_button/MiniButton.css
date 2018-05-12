@@ -5,7 +5,7 @@
   display: inline-block;
   font-size: 12px;
   transition: 0.3s;
-  margin: 0px 5px 0px 5px;
+  margin: 0px 0px 0px 10px;
 }
 
 .mini-button:hover {

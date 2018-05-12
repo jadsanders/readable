@@ -1,7 +1,7 @@
 .main-screen {
   width: calc(100% - 425px);
-  //background-color: yellow;
-  padding: 50px 25px 50px 50px;
+  //background-color: lightgray;
+  padding: 100px 25px 50px 50px;
   float: left;
   transition: all 0.3s;
 }
@@ -11,7 +11,7 @@
   text-align: center;
   //background-color: grey;
   float: right;
-  padding: 50px 50px 50px 25px;
+  padding: 100px 50px 50px 25px;
   transition: all 0.3s;
 }
 
@@ -27,9 +27,8 @@
   }
 }
 
-
 .component-header-box {
-  //background-color: grey;
+  //background-color: lightgrey;
   height: 35px;
   padding: 15px 0px 0px 0px;
   border-bottom: 1px solid #c6d2da;
@@ -78,4 +77,18 @@ h5 {
 ::-ms-input-placeholder {
    color: lightgray;
    font-family: montserrat;
+}
+
+.standard-container {
+  //background-color: grey;
+  width: calc(100% - 100px);
+  padding: 100px 50px 50px 50px;
+  transition: all 0.3s;
+}
+
+@media only screen and (min-width: 900px) {
+  .standard-container {
+    width: calc(70% - 100px);
+    margin-left: 15%;
+  }
 }

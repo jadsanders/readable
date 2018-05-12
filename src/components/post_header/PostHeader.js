@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './PostHeader.css';
-import { dateConvert } from '../../utils/helpers';
+import { dateConvert, capitalize } from '../../utils/helpers';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateVote, sortPostsDate, removePost } from '../../actions/posts';
@@ -21,24 +21,18 @@ class PostHeader extends Component {
     const { clearSort, updateVote, removePost } = this.props
 
     return (
-      <div className='post-header'>
+      <div>
+        <div className="post-header-top-container">
 
-        <div>
-          <Link
-            className='postheader-link'
-            to={`/${category}/${id}`}
-            key={id}
-            onClick={clearSort}
-          >
-            <div className="post-header-title-container">
-              <h3>{title}</h3>
+          <div className="post-header-author-container">
+            {author} at {dateConvert(timestamp)}
+            <div className="post-header-category-badge">
+              {capitalize(category)}
             </div>
-          </Link>
+          </div>
 
 
-
-
-          <div className="post-header-action-buttons-container not-selectable">
+          <div className="post-header-action-buttons-container">
 
             {this.state.deleteVisible === false &&
               <div>
@@ -58,7 +52,6 @@ class PostHeader extends Component {
 
             {this.state.deleteVisible === true &&
               <div className="not-selectable">
-
                 <div className="post-action-box confirmation-text">
                   Are your sure?
                 </div>
@@ -70,30 +63,57 @@ class PostHeader extends Component {
                 <div className="post-action-box">
                   <i onClick={() => this.toggleDelete()} className="material-icons confirm-abort-delete-link abort-btn">close</i>
                 </div>
-
               </div>
             }
 
           </div>
+
         </div>
 
-        <div className="post-header-body-container">
-          {body.replace(/(([^\s]+\s\s*){10})(.*)/,"$1…")}
-        </div>
 
-        <div className="post-header-engagement-box not-selectable">
-          <h5>
-            {commentCount === null ? '0' : commentCount} comments&nbsp;&nbsp;&nbsp;&nbsp;{voteScore} votes
-            &nbsp;&nbsp;&nbsp;
-            <i className="material-icons vote-thumb" onClick={() => updateVote(id, 'downVote', 'posts')}>thumb_down</i>
-            <i className="material-icons vote-thumb" onClick={() => updateVote(id, 'upVote', 'posts')}>thumb_up</i>
-          </h5>
-        </div>
 
-        <div className="post-header-bottom-box">
-          <h6>{author} at {dateConvert(timestamp)}</h6>
-        </div>
 
+
+
+
+
+
+
+
+
+        <div className='post-header'>
+          <div>
+            <Link
+              className='postheader-link'
+              to={`/${category}/${id}`}
+              key={id}
+              onClick={clearSort}
+            >
+              <div className="post-header-title-container">
+                <h2>{title}</h2>
+              </div>
+
+              <div className="post-header-body-container">
+                {body.replace(/(([^\s]+\s\s*){10})(.*)/,"$1…")}
+              </div>
+            </Link>
+          </div>
+
+
+
+          <div className="post-header-engagement-box">
+            <h5>
+              {commentCount === null ? '0' : commentCount} comment{commentCount === 1 ? null : "s"}
+                &nbsp;&nbsp;&nbsp;&nbsp;
+              {voteScore === null ? '0' : voteScore} vote{voteScore === 1 || voteScore === -1 ? null : "s"}
+                &nbsp;&nbsp;&nbsp;&nbsp;
+              <i className="material-icons vote-thumb" onClick={() => updateVote(id, 'downVote', 'posts')}>thumb_down</i>
+              <i className="material-icons vote-thumb" onClick={() => updateVote(id, 'upVote', 'posts')}>thumb_up</i>
+            </h5>
+          </div>
+
+
+        </div>
       </div>
     )
   }

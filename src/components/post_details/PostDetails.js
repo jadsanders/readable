@@ -48,97 +48,84 @@ class PostDetails extends Component {
 
     return(
       <div>
-        <div className="sidebar-right">
-          <div className='component-header-box'></div>
-          <div className="post-detail-box">
-            <div className="post-details-row">
-              <h5>Written by {author} on {dateConvert(timestamp)}</h5>
-            </div>
-            <div className="post-details-row not-selectable">
-              <CategoryBadge
-                color='blue'
-                active={true}
-                buttonText={category === undefined ? null : capitalize(category)}/>
-            </div>
-            <div className="post-details-row not-selectable">
-              <h3>{voteScore}</h3>
-              <h5>votes</h5>
-            </div>
-            <div className="post-details-row not-selectable">
-              <i className="material-icons post-detail-vote-thumb" onClick={() => updateDetailVote(id, 'downVote', 'posts')}>thumb_down</i>
-              <i className="material-icons post-detail-vote-thumb" onClick={() => updateDetailVote(id, 'upVote', 'posts')}>thumb_up</i>
-            </div>
-            <div className="post-detail-action-box">
-              {this.state.deleteVisible === false &&
-                <div>
-                  <div className="post-action-box">
-                    <Link to={`/posts/${id}/edit`}>
-                      <i className="material-icons edit-post-link">edit</i>
-                    </Link>
-                  </div>
 
-                  <div className="post-action-box">
-                    <div>
-                      <i onClick={() => this.toggleDelete()} className="material-icons delete-post-link">delete</i>
-                    </div>
-                  </div>
-                </div>
-              }
+        <div className="post-detail-top-row not-selectable">
 
-              {this.state.deleteVisible === true &&
-                <div className="not-selectable">
 
-                  <div className="post-action-box confirmation-text">
-                    Are your sure?
-                  </div>
-
-                  <div className="post-action-box">
-                    <i onClick={() => this.handleDelete(id)} className="material-icons confirm-abort-delete-link confirm-btn">done</i>
-                  </div>
-
-                  <div className="post-action-box">
-                    <i onClick={() => this.toggleDelete()} className="material-icons confirm-abort-delete-link abort-btn">close</i>
-                  </div>
-
-                </div>
-              }
-            </div>
+          <div className="post-detail-meta-info">
+            {author} on {dateConvert(timestamp)}
           </div>
+
+          <div className="post-detail-meta-info">
+            {capitalize(category)}
+          </div>
+
+          <div className="post-detail-meta-info">
+            {voteScore === null ? '0' : voteScore} vote{voteScore === 1 || voteScore === -1 ? null : "s"}
+            <i className="material-icons post-detail-vote-thumb" onClick={() => updateDetailVote(id, 'downVote', 'posts')}>thumb_down</i>
+            <i className="material-icons post-detail-vote-thumb" onClick={() => updateDetailVote(id, 'upVote', 'posts')}>thumb_up</i>
+          </div>
+
+          <div className="post-detail-meta-info">
+            <Link to={`/posts/${id}/edit`}>
+              <i className="material-icons">edit</i>
+            </Link>
+          </div>
+
+          {this.state.deleteVisible === false &&
+            <div className="post-detail-meta-info">
+              <i onClick={() => this.toggleDelete()} className="material-icons">delete</i>
+            </div>
+          }
+
+          {this.state.deleteVisible === true &&
+            <div className="post-detail-delete-box not-selectable">
+              <div className="post-detail-delete-box-inner-1">Are you sure?</div>
+              <div className="post-detail-delete-box-inner-2">
+                <i onClick={() => this.handleDelete(id)} className="material-icons post-detail-delete-confirm">done</i>
+              </div>
+              <div className="post-detail-delete-box-inner-2">
+                <i onClick={() => this.toggleDelete()} className="material-icons post-detail-delete-abort">close</i>
+              </div>
+            </div>
+          }
+
+
+
         </div>
 
 
 
-        <div className="main-screen">
-
-          <div className='component-header-box post-detail-header'>
-            <h3>{title}</h3>
-          </div>
-
-          <div className="post-detail-box post-detail-body">
-            {body}
-          </div>
 
 
-          <div className="post-detail-box">
+        <div className='post-detail-header'>
+          <h1>{title}</h1>
+        </div>
 
-            <h4>{commentCount === undefined ? '0' : commentCount} comments</h4>
+        <div className="post-detail-body white-space-pre-wrap">
+          {body}
+        </div>
 
-            {commentList.length > 0
-              ? commentList.map((comment) =>
-                  <div key={comment.id}>
-                    <CommentHeader comment={comment}/>
-                  </div>
-                )
-              : null
-            }
 
-            <div className="comment-form-container">
-              <CommentForm
-                state={this.commentFormState}
-                location={this.props.location}
-              />
-            </div>
+        <div>
 
+          <h4>{commentCount === undefined ? '0' : commentCount} comment{commentCount === 1 ? null : "s"}</h4>
+
+
+          {commentList.length > 0
+            ? commentList.map((comment) =>
+                <div key={comment.id}>
+                  <CommentHeader comment={comment}/>
+                </div>
+              )
+            : null
+          }
+
+          <div className="comment-form-container">
+            <CommentForm
+              state={this.commentFormState}
+              location={this.props.location}
+            />
           </div>
         </div>
       </div>
