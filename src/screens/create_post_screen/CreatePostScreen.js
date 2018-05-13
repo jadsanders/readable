@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PostForm from '../../components/forms/post_form/PostForm';
 import uuidv4 from 'uuid';
 
+import { Link } from 'react-router-dom';
+
 import { removeEditOrigin } from '../../actions/posts';
 
 import './CreatePostScreen.css';
@@ -25,6 +27,13 @@ class CreatePostScreen extends Component {
   render() {
     return(
       <div className="standard-container">
+
+        <Link to='/'>
+          <div className="home-button not-selectable">
+            <i className="material-icons home-icon">home</i>Home
+          </div>
+        </Link>
+
         <div className='component-header-box'>
           <h3>New Post</h3>
         </div>

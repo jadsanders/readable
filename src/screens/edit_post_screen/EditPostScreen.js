@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PostForm from '../../components/forms/post_form/PostForm';
 import NothingFound from '../../components/errors/nothing_found/NothingFound';
 
@@ -21,6 +22,12 @@ class EditPostScreen extends Component {
 
     return(
       <div>
+        
+        <Link to='/'>
+          <div className="home-button not-selectable">
+            <i className="material-icons home-icon">home</i>Home
+          </div>
+        </Link>
 
         {Object.keys(this.props.postDetails).length > 0 &&
           <div className="standard-container">

@@ -93,3 +93,15 @@ h5 {
     margin-left: 15%;
   }
 }
+
+.home-button {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  padding-top: 5px;
+  color: #D6D7D9;
+}
+
+.home-icon {
+  margin-right: 10px
+}

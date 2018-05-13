@@ -1,18 +1,5 @@
-.home-button {
-  position: absolute;
-  top: 25px;
-  left: 25px;
-  padding-top: 5px;
-  color: #D6D7D9;
-}
-
-
 
 .comment-box {
   margin-bottom: 25px;
   background-color: lightgray;
-}
-
-.home-icon {
-  margin-right: 10px
 }
