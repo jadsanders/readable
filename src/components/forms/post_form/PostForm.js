@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addPost, editPost, sortPostsDate } from '../../../actions/posts';
+import { addPost, editPost } from '../../../actions/posts';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -56,6 +56,12 @@ class PostForm extends Component {
 
   componentDidMount() {
     this.props.fetchCategories();
+  }
+
+  goBackHome(editOrigin) {
+    return (
+      Object.keys(editOrigin).length ===  0 || editOrigin === "homeScreen"
+    )
   }
 
   render() {
@@ -125,12 +131,13 @@ class PostForm extends Component {
 
           <div className="post-form-first-button">
             {this.props.type === "create"
-              ? <MediumButton color={this.canBeSubmitted() ? "green" : "grey"} buttonText="Save Post" onClick={this.handleCreate}/>
+              ? <MediumButton color={this.canBeSubmitted() ? "green" : "grey"} buttonText="Create Post" onClick={this.handleCreate}/>
               : <MediumButton color={this.canBeSubmitted() ? "green" : "grey"} buttonText="Update Post" onClick={this.handleUpdate} />
             }
           </div>
 
-          <Link to='/' onClick={this.props.sortPostsDate}>
+
+          <Link to={this.goBackHome(this.props.editOrigin) ? "/" : `/${this.state.category}/${this.state.id}` }>
             <MediumButton color="blue" buttonText="Discard"/>
           </Link>
 
@@ -142,10 +149,11 @@ class PostForm extends Component {
   }
 }
 
-function mapStateToProps ({ categories }) {
+function mapStateToProps ({ categories, posts }) {
   const allCategories = categories.byName
   return {
-    categories: Object.values(allCategories)
+    categories: Object.values(allCategories),
+    editOrigin: posts.editOrigin
   }
 }
 
@@ -153,7 +161,6 @@ function mapDispatchToProps (dispatch) {
   return {
     createPost: (post) => dispatch(addPost(post)),
     updatePost: (post) => dispatch(editPost(post)),
-    sortPostsDate: () => dispatch(sortPostsDate()),
     fetchCategories: () => dispatch(fetchCategories()),
   }
 }

@@ -8,7 +8,7 @@ import PostsCategoryFilter from '../../components/posts_category_filter/PostsCat
 
 import './HomeScreen.css';
 
-import { fetchPosts, clearPostDetails } from '../../actions/posts';
+import { fetchPosts, clearPostDetails, setEditOrigin } from '../../actions/posts';
 import { clearComments } from '../../actions/comments';
 import { fetchCategories } from '../../actions/categories';
 
@@ -19,6 +19,7 @@ class HomeScreen extends Component {
     this.props.fetchCategories();
     this.props.clearPostDetails();
     this.props.clearComments();
+    this.props.setEditOrigin("homeScreen");
   }
 
 
@@ -58,7 +59,8 @@ function mapDispatchToProps (dispatch) {
     fetchPosts: () => dispatch(fetchPosts()),
     fetchCategories: () => dispatch(fetchCategories()),
     clearPostDetails: () => dispatch(clearPostDetails()),
-    clearComments: () => dispatch(clearComments())
+    clearComments: () => dispatch(clearComments()),
+    setEditOrigin: (origin) => dispatch(setEditOrigin(origin))
   }
 }
 

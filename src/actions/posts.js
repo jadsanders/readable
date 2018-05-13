@@ -12,7 +12,8 @@ export const CREATE_POST = 'CREATE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const CLEAR_POSTS = 'CLEAR_POSTS';
-
+export const SET_EDIT_ORIGIN = 'SET_EDIT_ORIGIN';
+export const REMOVE_EDIT_ORIGIN = 'REMOVE_EDIT_ORIGIN';
 
 
 // get all posts
@@ -160,5 +161,20 @@ export const removePostDetails = (id) => dispatch => (
 export function clearPosts () {
   return {
     type: CLEAR_POSTS
+  }
+};
+
+// set edit origin
+export function setEditOrigin (origin) {
+  return {
+    type: SET_EDIT_ORIGIN,
+    origin
+  }
+};
+
+// remove edit origin
+export function removeEditOrigin () {
+  return {
+    type: REMOVE_EDIT_ORIGIN
   }
 };

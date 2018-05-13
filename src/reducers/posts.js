@@ -10,6 +10,8 @@ import {
   CREATE_POST,
   DELETE_POST,
   CLEAR_POSTS,
+  SET_EDIT_ORIGIN,
+  REMOVE_EDIT_ORIGIN,
 } from '../actions/posts'
 
 import {
@@ -21,12 +23,13 @@ const initialState = {
   byId: {},
   allIds: [],
   sortType: {},
-  postDetails: {}
+  postDetails: {},
+  editOrigin: {}
 }
 
 export default function posts (state = initialState, action) {
 
-  const { posts, id, direction, post, postDetails } = action
+  const { posts, id, direction, post, postDetails, origin } = action
 
   switch (action.type) {
     case RECEIVE_POSTS:
@@ -152,6 +155,17 @@ export default function posts (state = initialState, action) {
         sortType: {}
       }
 
+    case SET_EDIT_ORIGIN:
+      return {
+        ...state,
+        editOrigin: origin
+      }
+
+    case REMOVE_EDIT_ORIGIN:
+      return {
+        ...state,
+        editOrigin: {}
+      }
 
     default:
       return state

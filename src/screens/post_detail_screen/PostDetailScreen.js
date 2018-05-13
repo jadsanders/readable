@@ -7,7 +7,7 @@ import PostDetails from '../../components/post_details/PostDetails';
 
 import './PostDetailScreen.css';
 
-import { fetchPostDetails, clearPosts } from '../../actions/posts';
+import { fetchPostDetails, clearPosts, setEditOrigin } from '../../actions/posts';
 import { fetchComments } from '../../actions/comments';
 import { clearCategories } from '../../actions/categories';
 
@@ -18,6 +18,7 @@ class PostDetailScreen extends Component {
     this.props.fetchComments(this.props.match.params.id);
     this.props.clearCategories();
     this.props.clearPosts();
+    this.props.setEditOrigin("postDetailScreen");
   }
 
   urlIsValid() {
@@ -64,6 +65,7 @@ function mapDispatchToProps (dispatch) {
     fetchComments: (id) => dispatch(fetchComments(id)),
     clearCategories: () => dispatch(clearCategories()),
     clearPosts: () => dispatch(clearPosts()),
+    setEditOrigin: (origin) => dispatch(setEditOrigin(origin)),
   }
 }
 

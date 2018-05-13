@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PostForm from '../../components/forms/post_form/PostForm';
 import uuidv4 from 'uuid';
+
+import { removeEditOrigin } from '../../actions/posts';
 
 import './CreatePostScreen.css';
 
@@ -13,6 +16,10 @@ class CreatePostScreen extends Component {
     body: [],
     author: [],
     category: [],
+  }
+
+  componentDidMount() {
+    this.props.removeEditOrigin();
   }
 
   render() {
@@ -33,4 +40,10 @@ class CreatePostScreen extends Component {
   }
 }
 
-export default CreatePostScreen;
+function mapDispatchToProps (dispatch) {
+  return {
+    removeEditOrigin: (origin) => dispatch(removeEditOrigin(origin)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(CreatePostScreen)
