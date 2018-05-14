@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import uuidv4 from 'uuid';
+
+import { createId } from '../../utils/helpers';
+
 import { Link } from 'react-router-dom';
 
 import CommentForm from '../../components/forms/comment_form/CommentForm';
@@ -17,7 +19,7 @@ import './PostDetails.css';
 class PostDetails extends Component {
 
   commentFormState = {
-    id: uuidv4(),
+    id: createId(),
     timestamp: new Date().getTime(),
     parentId: this.props.location.match.params.id,
     body: [],

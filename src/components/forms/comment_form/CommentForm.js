@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import uuidv4 from 'uuid';
+
+import { createId } from '../../../utils/helpers';
 
 import { addComment, sortCommentsDate } from '../../../actions/comments';
 import MediumButton from '../../buttons/medium_button/MediumButton';
@@ -25,7 +26,7 @@ class CommentForm extends Component {
 
   resetForm = () => {
     this.setState({
-      id: uuidv4(),
+      id: createId(),
       timestamp: new Date().getTime(),
       parentId: this.props.location.match.params.id,
       body: [],
@@ -51,7 +52,7 @@ class CommentForm extends Component {
   render() {
     return(
       <div>
-        
+
         <form>
           <input
             type="text"

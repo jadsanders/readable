@@ -1,40 +1,38 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { sortPostsDate, sortPostsVote, sortPostsComments } from '../../actions/posts';
 import MiniButton from '../buttons/mini_button/MiniButton';
 
 import './PostsListSort.css';
 
-class PostsListSort extends Component {
-  render() {
-    return (
-      <div className="not-selectable">
+const PostsListSort = ({ sortPostsDate, sortPostsVote, sortPostsComments, sortType }) => (
+  <div className="not-selectable">
 
-        <MiniButton
-          onClick={ () => this.props.sortPostsDate() }
-          active={ this.props.sortType === 'timestamp' ? true : false }
-          buttonText="Newest"
-          color="custom"
-        />
+    <MiniButton
+      onClick={ () => sortPostsDate() }
+      active={ sortType === 'timestamp' ? true : false }
+      buttonText="Newest"
+      color="custom"
+    />
 
-        <MiniButton
-          onClick={ () => this.props.sortPostsVote() }
-          active={ this.props.sortType === 'voteScore' ? true : false }
-          buttonText="Most liked"
-          color="custom"
-        />
+    <MiniButton
+      onClick={ () => sortPostsVote() }
+      active={ sortType === 'voteScore' ? true : false }
+      buttonText="Most liked"
+      color="custom"
+    />
 
-        <MiniButton
-          onClick={ () => this.props.sortPostsComments() }
-          active={ this.props.sortType === 'comments' ? true : false }
-          buttonText="Most discussed"
-          color="custom"
-        />
+    <MiniButton
+      onClick={ () => sortPostsComments() }
+      active={ sortType === 'comments' ? true : false }
+      buttonText="Most discussed"
+      color="custom"
+    />
 
-      </div>
-    );
-  }
-}
+  </div>
+)
+
+
 
 
 function mapStateToProps (state) {

@@ -13,7 +13,16 @@ import './PostForm.css';
 
 class PostForm extends Component {
 
-  state = this.props.state
+
+
+  state = {
+    id: this.props.state.id,
+    timestamp: this.props.state.timestamp,
+    title: this.props.state.title,
+    body: this.props.state.body,
+    author: this.props.state.author,
+    category: this.props.state.category,
+  }
 
   handleCreate = (e) => {
     e.preventDefault()
@@ -21,7 +30,6 @@ class PostForm extends Component {
       return
     } else {
       this.props.createPost(this.state)
-      this.props.sortPostsDate()
       this.props.history.push('/')
     }
   }
@@ -32,8 +40,11 @@ class PostForm extends Component {
       return
     } else {
       this.props.updatePost(this.state)
-      this.props.sortPostsDate()
-      this.props.history.push('/')
+      if (this.goBackHome(this.props.editOrigin)) {
+        this.props.history.push('/')
+      } else {
+        this.props.history.push(`/${this.state.category}/${this.state.id}`)
+      }
     }
   }
 

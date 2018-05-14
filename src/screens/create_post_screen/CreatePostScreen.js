@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PostForm from '../../components/forms/post_form/PostForm';
-import uuidv4 from 'uuid';
+
+import { createId } from '../../utils/helpers';
 
 import { Link } from 'react-router-dom';
 
@@ -12,7 +13,7 @@ import './CreatePostScreen.css';
 class CreatePostScreen extends Component {
 
   state = {
-    id: uuidv4(),
+    id: createId(),
     timestamp: new Date().getTime(),
     title: [],
     body: [],

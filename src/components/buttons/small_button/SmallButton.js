@@ -1,15 +1,15 @@
 import React from 'react';
 import './SmallButton.css'
 
-const SmallButton = (props) => (
+const SmallButton = ({ active, color, buttonText }) => (
 
   <div className=
-    { props.active === true
-      ? `small-button small-button-${props.color} small-button-${props.color}-active`
-      : `small-button small-button-${props.color}`
+    { active === true
+      ? `small-button small-button-${color} small-button-${color}-active`
+      : `small-button small-button-${color}`
     }
   >
-    {props.buttonText}
+    {buttonText}
   </div>
 )
 
